@@ -12,6 +12,28 @@
 #include "ft_ls.h"
 #include <stdio.h>//remember to remove
 
+//this fuction will be used to sort 
+char 				**bubble_sort(char **str)
+{
+	int i;
+	int j;
+	i = 0;
+	char *tmp = str[0];
+	while(str[i]){
+		j = 1;
+		while(str[j]){
+			if (strcmp(str[i], str[j]) > 0){
+				tmp = str[j];
+				str[j] = str[i];
+				str[i] = tmp;
+				}
+			j++;
+		}
+		i++;
+	}
+	return (str);
+}
+
 //method will be used desplay the content within the directory without a flag
 void				no_flags(int argc, char **content)
 {
@@ -75,6 +97,7 @@ void			get_content(int tot, int argc, char *argv)
 		j++;
 	}
 	closedir(mydir);
+	content = bubble_sort(content);
 	no_flags(argc, content);
 	hidden_flag(argc, content, argv);
 	content[tot + 1] = NULL;
