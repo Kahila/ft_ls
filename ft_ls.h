@@ -23,8 +23,8 @@
 # include <uuid/uuid.h> //working with the uuid_t data type
 # include <sys/xattr.h> //working with the listaxttr and the getxattr functions
 # include <stdlib.h>    //working with the malloc, exit and free functions
-# include <stdio.h>     //working with the perror function
 # include <string.h>    //working with the strerror function
+# include <stdio.h>     //working with the perror function
 # define POTENTIAL_FLAG '-'
 # define HIDDEN_FILES 'a'
 # define FILE_DETAILS 'l'
