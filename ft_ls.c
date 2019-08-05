@@ -19,10 +19,11 @@ char 				**bubble_sort(char **str)
 	int j;
 	i = 0;
 	char *tmp = str[0];
+
 	while(str[i]){
-		j = 1;
+		j = 0;
 		while(str[j]){
-			if (strcmp(str[i], str[j]) > 0){
+			if (strcmp(str[i], str[j]) < 0){
 				tmp = str[j];
 				str[j] = str[i];
 				str[i] = tmp;
@@ -32,6 +33,27 @@ char 				**bubble_sort(char **str)
 		i++;
 	}
 	return (str);
+}
+
+//method that will be used to desplay the file names in reverse
+void				revers_flag(int argc, char **content)
+{
+	int i;
+
+	if (argc == 1)
+	{
+		i = 0;
+		while (content[i])
+		{
+			if (content[i][0] != '.')
+			{
+				ft_putstr(content[i]);
+				ft_putchar('\t');
+			}
+			i++;
+		}
+	}
+	return;
 }
 
 //method will be used desplay the content within the directory without a flag
