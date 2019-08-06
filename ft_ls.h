@@ -25,12 +25,21 @@
 # include <stdlib.h>    //working with the malloc, exit and free functions
 # include <string.h>    //working with the strerror function
 # include <stdio.h>     //working with the perror function
+# include <errno.h>
+# include <stdio.h>     //remember to remove
 # define POTENTIAL_FLAG '-'
 # define HIDDEN_FILES 'a'
 # define FILE_DETAILS 'l'
 # define RECURSIVE_LS 'R'
 # define SORT_LAST_MODI 't'
 # define SORT_REV_LEXO 'r'
+char 	**bubble_sort(char **str);
+void	revers_flag(int argc, char **content);
+void	no_flags(int argc, char **content);
+void	hidden_flag(int argc, char **content, char *argv);
+void    get_content(int tot, int argc, char *argv);
+void    count_content(struct dirent *files, DIR *mydir, int argc, char *argv);
+void	file_info(char **content, char  *argv);
 enum output
 {
     SUCCESS,

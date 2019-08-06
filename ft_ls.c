@@ -23,7 +23,7 @@ char 				**bubble_sort(char **str)
 	while(str[i]){
 		j = 0;
 		while(str[j]){
-			if (strcmp(str[i], str[j]) < 0){
+			if (ft_strcmp(str[i], str[j]) < 0){
 				tmp = str[j];
 				str[j] = str[i];
 				str[i] = tmp;
@@ -122,8 +122,40 @@ void			get_content(int tot, int argc, char *argv)
 	content = bubble_sort(content);
 	no_flags(argc, content);
 	hidden_flag(argc, content, argv);
+	file_info(content, argv);
 	content[tot + 1] = NULL;
 	return;
+}
+
+//last thought working on the permisions 
+//this method will be used for the -l flag
+void			file_info(char **content, char *argv)
+{
+	struct stat buff;
+	int i;
+	if (argv[0] == '-' && argv[1] == 'l')
+	{
+	i = 0;
+	int size;
+	while (content[i])
+	{
+		stat(content[i], &buff);
+		if ((size = buff.st_nlink) > 1)
+			{
+				//printf("in here\n");
+				ft_putstr("d ->");
+				ft_putstr(content[i]);
+			}
+			else
+			{
+				ft_putstr("- ->");
+				ft_putstr(content[i]);
+			}
+			
+			printf("\n");
+		i++;
+	}
+	}
 }
 
 //this method will count the amount of content within the ./
@@ -150,9 +182,13 @@ int main(int argc, char **argv)
 	DIR *mydir;
 	struct dirent *files;
 	struct dirent *count;
-	
+	struct stat buff;
 	mydir = opendir(".");
 	count_content(files, mydir, argc,argv[1]);
 	closedir(mydir);
+	int i = stat("libft", &buff);
+	time_t *curr_time;
+	int j = buff.st_mode;
+	printf("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n%ld\n%d\n",time(curr_time), j);
 	return (SUCCESS);
 }
