@@ -6,7 +6,7 @@
 /*   By: akalombo <akalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 12:38:54 by akalombo          #+#    #+#             */
-/*   Updated: 2019/08/09 12:29:27 by akalombo         ###   ########.fr       */
+/*   Updated: 2019/08/09 21:55:30 by akalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <time.h>      //working with the time and the ctime functions
 # include <dirent.h>    //working with the opendir, readdir and closedir functions
 # include <sys/stat.h>  //working with the stat function and lstat functions
+#include <grp.h>
 # include <sys/types.h> //
 # include <pwd.h>       //working with the passwd struct;
 # include <uuid/uuid.h> //working with the uuid_t data type
@@ -33,6 +34,9 @@
 # define RECURSIVE_LS 'R'
 # define SORT_LAST_MODI 't'
 # define SORT_REV_LEXO 'r'
+char		*user(char *);
+char		*group(char *);
+char		*last_mod(char *);
 void        saveData(int, char**);
 char 	    **bubble_sort(char **str);
 void	    revers_flag(int argc, char **content);
@@ -46,6 +50,7 @@ typedef struct s_list
     int     nLinks;
     int     dirORfile;
     int     nBytes;
+	char	*last_modified;
     char    *user;
     char    *group;
     char    *fileName;
@@ -55,6 +60,8 @@ typedef struct s_list
 enum        statusCodes
 {
     SUCCESS,
+	IS_FILE = -2,
+	IS_FOLDER = -3,
     FAILED = -1
 };
 #endif

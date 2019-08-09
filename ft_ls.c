@@ -143,23 +143,15 @@ void			count_content(struct dirent *files, DIR *mydir, int argc, char *argv)
 		}
 		tot++;
 	}
-	printf("at the end count_content tota = %d\n", tot);
 	get_content(tot, argc, argv);
 }
 
 int main(int argc, char **argv)
 {
-	printf("here main\n");
 	DIR *mydir;
 	struct dirent *files=NULL;
 	mydir = opendir(".");
-	//struct stat buff;
-	mydir = opendir(".");
 	count_content(files, mydir, argc,argv[1]);
-	//closedir(mydir);
-	//int i = stat("libft", &buff);
-	//time_t *curr_time;
-	//int j = buff.st_mode;
-	//printf("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n%ld\n%d\n",time(curr_time), j);
+	closedir(mydir);
 	return (SUCCESS);
 }

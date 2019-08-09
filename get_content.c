@@ -34,16 +34,14 @@ void			get_content(int tot, int argc, char *argv)
 			i++;
 		}
 		content[j] = ft_strdup(files->d_name);
-		j++;
+        j++;
 	}
 	closedir(mydir);
-//	content = bubble_sort(content);
 //	no_flags(argc, content);
 //	hidden_flag(argc, content, argv);
 //	file_info(content, argv);
     content = bubble_sort(content);
 	saveData(tot, content);
 	content[tot + 1] = NULL;
-	printf("at the end of get content\n");
 	return;
 }
