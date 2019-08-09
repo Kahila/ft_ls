@@ -37,4 +37,10 @@ void            saveData(int numFiles,char  **content)
         lst->next->prev = lst;
         i++;
     }
+    lst = head.prev;
+    while(lst != &head)
+    {
+        printf("%s\n", lst->fileName);
+        lst = lst->prev;
+    }
 }
