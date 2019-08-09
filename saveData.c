@@ -41,14 +41,13 @@ int             nBytes(char *content)
     struct stat buff;
     i = stat(content, &buff);
     Bytes = buff.st_size;
-    //printf("%d\n", Bytes);
     return (Bytes);
 }
 
 //working with lists
-void            saveData(int numFiles,char  **content)
+//storing all the data about the file within the lst node
+void            saveData(int numFiles,char  **content, t_list *lst)
 {
-    t_list *lst;
     t_list head;
     int i;
 

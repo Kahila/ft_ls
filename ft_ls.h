@@ -6,7 +6,7 @@
 /*   By: akalombo <akalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 12:38:54 by akalombo          #+#    #+#             */
-/*   Updated: 2019/08/09 21:55:30 by akalombo         ###   ########.fr       */
+/*   Updated: 2019/08/09 23:22:50 by akalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 char		*user(char *);
 char		*group(char *);
 char		*last_mod(char *);
-void        saveData(int, char**);
+char        *get_flags(int argc, char **argv);
 char 	    **bubble_sort(char **str);
 void	    revers_flag(int argc, char **content);
 void	    no_flags(int argc, char **content);
@@ -45,6 +45,8 @@ void	    hidden_flag(int argc, char **content, char *argv);
 void        get_content(int tot, int argc, char *argv);
 void        count_content(struct dirent *files, DIR *mydir, int argc, char *argv);
 void	    file_info(char **content, char  *argv);
+int         valid_flag(int argc, char **argv);
+int         tot_leng(char **argv);
 typedef struct s_list
 {
     int     nLinks;
@@ -57,9 +59,12 @@ typedef struct s_list
     struct s_list    *next;
     struct s_list    *prev;
 }           t_list;
+void        saveData(int, char**, t_list *);
 enum        statusCodes
 {
     SUCCESS,
+	VALID_FLAG,
+	INVALID_FLAG,
 	IS_FILE = -2,
 	IS_FOLDER = -3,
     FAILED = -1
