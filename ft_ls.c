@@ -6,7 +6,7 @@
 /*   By: akalombo <akalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 16:51:16 by akalombo          #+#    #+#             */
-/*   Updated: 2019/07/31 14:41:13 by akalombo         ###   ########.fr       */
+/*   Updated: 2019/08/09 12:31:07 by akalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_ls.h"
@@ -127,6 +127,33 @@ void			get_content(int tot, int argc, char *argv)
 	return;
 }
 
+//working with lists
+void            save_data(int numFiles, **content)
+{
+    t_list *lst;
+    t_list head;
+    int i;
+
+    i = 0;
+    head.next = (t_list*)&head;
+    head.prev = (t_list*)&head;
+    while(i < numFiles)
+    {
+        lst = malloc(sizeof(t_list));
+        lst->nLinks = i;
+        lst->dirORfile = i;
+        lst->nBytes = i;
+        lst->user = "user";
+        lst->group = "group";
+        lst->fileName = "file name";
+        lst->next = head.next;
+        head.next = lst;
+        lst->prev = &head;
+        lst->next->prev = lst;
+        i++;
+    }
+}
+
 //last thought working on the permisions 
 //this method will be used for the -l flag
 void			file_info(char **content, char *argv)
@@ -182,13 +209,13 @@ int main(int argc, char **argv)
 	DIR *mydir;
 	struct dirent *files;
 	struct dirent *count;
-	struct stat buff;
+	//struct stat buff;
 	mydir = opendir(".");
 	count_content(files, mydir, argc,argv[1]);
 	closedir(mydir);
-	int i = stat("libft", &buff);
-	time_t *curr_time;
-	int j = buff.st_mode;
-	printf("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n%ld\n%d\n",time(curr_time), j);
+	//int i = stat("libft", &buff);
+	//time_t *curr_time;
+	//int j = buff.st_mode;
+	//printf("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n%ld\n%d\n",time(curr_time), j);
 	return (SUCCESS);
 }
