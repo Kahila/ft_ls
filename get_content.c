@@ -14,48 +14,35 @@
 #include "ft_ls.h"
 
 //this method will count the amount of content within the ./
-void			count_content(struct dirent *files, DIR *mydir, int argc, char *argv)
+void			count_content(struct dirent *files, DIR *mydir)
 {
 	int tot = 0;
-	int i = 0;
-	int l = 0;
 	while ((files = readdir(mydir)) != NULL)
 	{
-		i = 0;
-		while (files->d_name[i])
-		{
-			l += files->d_name[i];
-			i++;
-		}
 		tot++;
 	}
-	get_content(tot, argc, argv);
+	get_content(tot, files, mydir);
 }
 
 //this method will be used to get the names of the files/folders
-void			get_content(int tot, int argc, char *argv)
+void			get_content(int tot, struct dirent *files, DIR *mydir)
 {
 	char **content;
 	int j = 0;
     static t_list *lst;
-	DIR *mydir;
-	struct dirent *files;
-	mydir = opendir(".");
+	 DIR *mydir2;
+		struct dirent *files2;
+	mydir2 = opendir(".");
 	content = (char **)malloc(sizeof(char *) * (tot + 1));
 	int i = 0;
 	int l = 0;
-	while ((files = readdir(mydir)) != NULL)
+	while ((files2 = readdir(mydir2)) != NULL)
 	{
-		i = 0;
-		while (files->d_name[i])
-		{
-			l += files->d_name[i];
-			i++;
-		}
-		content[j] = ft_strdup(files->d_name);
+	//	printf("%s here\n", files2->d_name);
+		content[j] = ft_strdup(files2->d_name);
         j++;
 	}
-	closedir(mydir);
+	closedir(mydir2);
     content = bubble_sort(content);
 	saveData(tot, content, lst);
 	content[tot + 1] = NULL;

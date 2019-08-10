@@ -56,13 +56,13 @@ void            saveData(int numFiles,char  **content, t_list *lst)
     head.prev = (t_list*)&head;
     while(i < numFiles)
     {
-        lst = malloc(sizeof(t_list));
+        lst = (t_list *)malloc(sizeof(t_list));
         lst->fileName = content[i];
         lst->nLinks = get_nLinks(content[i]);
         lst->dirORfile = is_file(lst->nLinks);
         lst->nBytes = nBytes(content[i]);
         lst->last_modified = last_mod(content[i]);
-        lst->user = user(content[i]);
+       //lst->user = user(content[i]);
         lst->group = group(content[i]);
         lst->next = head.next;
         head.next = lst;
@@ -73,7 +73,7 @@ void            saveData(int numFiles,char  **content, t_list *lst)
     lst = head.prev;
     while(lst != &head)
     {
-        printf("%s\n", lst->fileName);
-        lst = lst->prev;
-    }
+       printf("%s \t\t%s\t\t%s\t\t%d\n", lst->fileName, lst->last_modified, lst->group, lst->nBytes);
+       lst = lst->prev;
+     }
 }

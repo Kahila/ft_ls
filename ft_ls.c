@@ -15,12 +15,11 @@
 int main(int argc, char **argv)
 {
 	DIR *mydir;
-	struct dirent *files=NULL;
+	struct dirent *files;
 	mydir = opendir(".");
-	count_content(files, mydir, argc,argv[1]);
+	if (!mydir)
+		printf("fail to open\n");
+	count_content(files, mydir);
 	closedir(mydir);
-	// if (valid_flag(argc, argv) == INVALID_FLAG)
-	// 	return (INVALID_FLAG);
-	printf(">>%s", get_flags(argc, argv));
 	return (SUCCESS);
 }
