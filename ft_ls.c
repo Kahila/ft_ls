@@ -16,10 +16,11 @@ int main(int argc, char **argv)
 {
 	DIR *mydir;
 	struct dirent *files;
-	mydir = opendir(".");
+	char *folder = ft_strdup("../");
+	mydir = opendir(folder);
 	if (!mydir)
 		printf("fail to open\n");
-	count_content(files, mydir);
+	count_content(files, mydir, folder);
 	closedir(mydir);
 	return (SUCCESS);
 }

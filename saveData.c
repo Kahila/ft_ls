@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "ft_ls.h" 
 
 //this method will be used to get the number of links for each file/folder
@@ -46,8 +45,9 @@ int             nBytes(char *content)
 
 //working with lists
 //storing all the data about the file within the lst node
-void            saveData(int numFiles,char  **content, t_list *lst)
+void            saveData(int numFiles,char  **content, t_list *lst, char *folder)
 {
+    char *full_path;
     t_list head;
     int i;
 
@@ -56,14 +56,15 @@ void            saveData(int numFiles,char  **content, t_list *lst)
     head.prev = (t_list*)&head;
     while(i < numFiles)
     {
+        full_path = get_path(folder, content[i]);
         lst = (t_list *)malloc(sizeof(t_list));
         lst->fileName = content[i];
-        lst->nLinks = get_nLinks(content[i]);
+        lst->nLinks = get_nLinks(full_path);
         lst->dirORfile = is_file(lst->nLinks);
-        lst->nBytes = nBytes(content[i]);
-        lst->last_modified = last_mod(content[i]);
-       //lst->user = user(content[i]);
-        lst->group = group(content[i]);
+        lst->nBytes = nBytes(full_path);
+        lst->last_modified = last_mod(full_path);
+        lst->user = user(full_path);
+        lst->group = group(full_path);
         lst->next = head.next;
         head.next = lst;
         lst->prev = &head;
@@ -73,7 +74,7 @@ void            saveData(int numFiles,char  **content, t_list *lst)
     lst = head.prev;
     while(lst != &head)
     {
-       printf("%s \t\t%s\t\t%s\t\t%d\n", lst->fileName, lst->last_modified, lst->group, lst->nBytes);
+       printf("%s \t\t%s\t%s\t%s\t\t%d\t%d\n", lst->fileName, lst->last_modified, lst->user, lst->group,lst->nLinks, lst->nBytes);
        lst = lst->prev;
      }
 }

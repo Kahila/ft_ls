@@ -13,7 +13,7 @@
 #ifndef FT_LS_H
 #define FT_LS_H
 
-# include "libft/libft.h"
+# include "libft_ls/libft.h"
 # include <unistd.h>
 # include <time.h>      //working with the time and the ctime functions
 # include <dirent.h>    //working with the opendir, readdir and closedir functions
@@ -42,11 +42,12 @@ char 	    **bubble_sort(char **str);
 void	    revers_flag(int argc, char **content);
 void	    no_flags(int argc, char **content);
 void	    hidden_flag(int argc, char **content, char *argv);
-void        get_content(int tot,struct dirent *files, DIR *mydir);
-void        count_content(struct dirent *files, DIR *mydir);
+void        get_content(int tot,struct dirent *files, DIR *mydir, char *folder);
+void        count_content(struct dirent *files, DIR *mydir, char *folder);
 void	    file_info(char **content, char  *argv);
 int         valid_flag(int argc, char **argv);
 int         tot_leng(char **argv);
+char        *get_path(char *folder, char *content);
 typedef struct s_list
 {
     int     nLinks;
@@ -59,7 +60,7 @@ typedef struct s_list
     struct s_list    *next;
     struct s_list    *prev;
 }           t_list;
-void        saveData(int, char**, t_list *);
+void        saveData(int, char**, t_list *, char *full_path);
 enum        statusCodes
 {
     SUCCESS,

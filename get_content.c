@@ -10,41 +10,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "ft_ls.h"
 
 //this method will count the amount of content within the ./
-void			count_content(struct dirent *files, DIR *mydir)
+void			count_content(struct dirent *files, DIR *mydir, char *folder)
 {
 	int tot = 0;
 	while ((files = readdir(mydir)) != NULL)
 	{
 		tot++;
 	}
-	get_content(tot, files, mydir);
+	get_content(tot, files, mydir, folder);
 }
 
 //this method will be used to get the names of the files/folders
-void			get_content(int tot, struct dirent *files, DIR *mydir)
+void			get_content(int tot, struct dirent *files, DIR *mydir, char *folder)
 {
 	char **content;
 	int j = 0;
     static t_list *lst;
 	 DIR *mydir2;
 		struct dirent *files2;
-	mydir2 = opendir(".");
+	mydir2 = opendir(folder);
 	content = (char **)malloc(sizeof(char *) * (tot + 1));
 	int i = 0;
 	int l = 0;
 	while ((files2 = readdir(mydir2)) != NULL)
 	{
-	//	printf("%s here\n", files2->d_name);
 		content[j] = ft_strdup(files2->d_name);
         j++;
 	}
 	closedir(mydir2);
     content = bubble_sort(content);
-	saveData(tot, content, lst);
+	saveData(tot, content, lst, folder);
 	content[tot + 1] = NULL;
 	return;
 }

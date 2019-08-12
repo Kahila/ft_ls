@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "ft_ls.h"
 
 //method will be used to check if the given flag is valid or not

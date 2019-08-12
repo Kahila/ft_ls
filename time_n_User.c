@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "ft_ls.h"
 
 //method that will be used to get the date the file was last modified
@@ -44,13 +43,15 @@ char        *user(char *content)
 {
     struct stat buff;
     int i;
-    uid_t j;
     struct passwd *ID;
 
+    // content = ft_strjoin("libft/", content);
     i = stat(content, &buff);
-    j = buff.st_uid;
-    ID = getpwuid(j);
-    return (ID->pw_name);
+    ID = getpwuid(buff.st_uid);
+    if (ID != NULL)
+        return (ft_strdup(ID->pw_name));
+    else
+        return (ft_itoa(buff.st_uid));
 }
 
 //method that will be used to get the group to which file/dir belongs
@@ -58,11 +59,9 @@ char        *group(char *content)
 {
     struct stat buff;
     int i;
-    gid_t j;
     struct group *ID;
 
     i = stat(content, &buff);
-    j = buff.st_gid;
-    ID = getgrgid(j);
+    ID = getgrgid(buff.st_gid);
     return (ID->gr_name);
 }
