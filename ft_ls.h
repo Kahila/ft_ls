@@ -66,8 +66,8 @@ enum        statusCodes
     SUCCESS,
 	VALID_FLAG,
 	INVALID_FLAG,
-	IS_FILE = -2,
-	IS_FOLDER = -3,
-    FAILED = -1
+	IS_FILE,
+	IS_FOLDER,
+    FAILED
 };
 #endif
