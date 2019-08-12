@@ -13,7 +13,7 @@
 #ifndef FT_LS_H
 #define FT_LS_H
 
-# include "libft_ls/libft.h"
+# include "libft_/libft.h"
 # include <unistd.h>
 # include <time.h>      //working with the time and the ctime functions
 # include <dirent.h>    //working with the opendir, readdir and closedir functions
