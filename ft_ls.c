@@ -6,7 +6,7 @@
 /*   By: akalombo <akalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 16:51:16 by akalombo          #+#    #+#             */
-/*   Updated: 2019/08/09 12:31:07 by akalombo         ###   ########.fr       */
+/*   Updated: 2019/08/13 11:50:35 by akalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_ls.h"
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 {
 	DIR *mydir;
 	struct dirent *files;
-	char *folder = ft_strdup("../");
+	char *folder = ft_strdup("..");
 	mydir = opendir(folder);
 	if (!mydir)
 		printf("fail to open\n");

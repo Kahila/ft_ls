@@ -6,7 +6,7 @@
 /*   By: akalombo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 16:18:49 by akalombo          #+#    #+#             */
-/*   Updated: 2019/08/09 16:18:51 by akalombo         ###   ########.fr       */
+/*   Updated: 2019/08/13 11:51:20 by akalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void            saveData(int numFiles,char  **content, t_list *lst, char *folder
         lst->user = user(full_path);
         lst->group = group(full_path);
         lst->next = head.next;
+        lst->permits = permits(full_path);
         head.next = lst;
         lst->prev = &head;
         lst->next->prev = lst;
@@ -74,7 +75,7 @@ void            saveData(int numFiles,char  **content, t_list *lst, char *folder
     lst = head.prev;
     while(lst != &head)
     {
-       printf("%s \t\t%s\t%s\t%s\t\t%d\t%d\n", lst->fileName, lst->last_modified, lst->user, lst->group,lst->nLinks, lst->nBytes);
+       //printf("%s \t\t%s\t%s\t%s\t%s\t%d\t%d\n", lst->fileName, lst->last_modified, lst->user, lst->group, lst->permits,lst->nLinks, lst->nBytes);
        lst = lst->prev;
      }
 }

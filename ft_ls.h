@@ -6,7 +6,7 @@
 /*   By: akalombo <akalombo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 12:38:54 by akalombo          #+#    #+#             */
-/*   Updated: 2019/08/09 23:22:50 by akalombo         ###   ########.fr       */
+/*   Updated: 2019/08/13 10:52:15 by akalombo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <grp.h>
 # include <sys/types.h> //
 # include <pwd.h>       //working with the passwd struct;
-# include <uuid/uuid.h> //working with the uuid_t data type
+//# include <uuid/uuid.h> //working with the uuid_t data type
 # include <sys/xattr.h> //working with the listaxttr and the getxattr functions
 # include <stdlib.h>    //working with the malloc, exit and free functions
 # include <string.h>    //working with the strerror function
@@ -48,15 +48,17 @@ void	    file_info(char **content, char  *argv);
 int         valid_flag(int argc, char **argv);
 int         tot_leng(char **argv);
 char        *get_path(char *folder, char *content);
+char        *permits(char *file);
 typedef struct s_list
 {
     int     nLinks;
     int     dirORfile;
     int     nBytes;
-	char	*last_modified;
+    char	*last_modified;
     char    *user;
     char    *group;
     char    *fileName;
+    char    *permits;
     struct s_list    *next;
     struct s_list    *prev;
 }           t_list;
@@ -64,10 +66,11 @@ void        saveData(int, char**, t_list *, char *full_path);
 enum        statusCodes
 {
     SUCCESS,
-	VALID_FLAG,
-	INVALID_FLAG,
-	IS_FILE,
-	IS_FOLDER,
-    FAILED
+    VALID_FLAG,
+    INVALID_FLAG,
+    IS_FILE,
+    IS_FOLDER,
+    FAILED,
+    FAILED_TO_READ_FILE_INFO
 };
 #endif
