@@ -57,7 +57,7 @@ void            saveData(int numFiles,char  **content, t_list *lst, char *folder
     while(i < numFiles)
     {
         full_path = get_path(folder, content[i]);
-        lst = (t_list *)malloc(sizeof(t_list));
+        lst = ft_memalloc(sizeof(t_list));
         lst->fileName = content[i];
         lst->nLinks = get_nLinks(full_path);
         lst->dirORfile = is_file(lst->nLinks);
@@ -73,9 +73,5 @@ void            saveData(int numFiles,char  **content, t_list *lst, char *folder
         i++;
     }
     lst = head.prev;
-    while(lst != &head)
-    {
-       printf("\r%s\t%d\t%s\t%s\t%d\t%s\t%s\n", lst->permits, lst->nLinks, lst->user, lst->group, lst->nBytes, lst->last_modified, lst->fileName);
-       lst = lst->prev;
-     }
+    flag_l(lst, &head);
 }

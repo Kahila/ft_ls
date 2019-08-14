@@ -63,6 +63,7 @@ typedef struct s_list
     struct s_list    *prev;
 }           t_list;
 void        saveData(int, char**, t_list *, char *full_path);
+void        flag_l(t_list *lst, t_list *head);
 enum        statusCodes
 {
     SUCCESS,

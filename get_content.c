@@ -30,13 +30,13 @@ void			get_content(int tot, struct dirent *files, DIR *mydir, char *folder)
 	DIR *mydir2;
 	struct dirent *files2;
 	mydir2 = opendir(folder);
-	content = (char **)malloc(sizeof(char *) * (tot + 1));
+	content = (char **)malloc(sizeof(char *) * (tot));
 	while ((files2 = readdir(mydir2)) != NULL)
 	{
 		content[j] = ft_strdup(files2->d_name);
 		j++;
 	}
-	content[tot + 1] = NULL;
+	content[tot] = NULL;
 	closedir(mydir2);
     content = bubble_sort(content);
 	saveData(tot, content, lst, folder);
