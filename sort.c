@@ -33,3 +33,30 @@ char 				**bubble_sort(char **str)
 	}
 	return (str);
 }
+
+//this method will sort the files accoring to the last modified
+char				**flag_t(char **str, char *folder)
+{
+	int j;
+	int i;
+	i = 0;
+	char *tmp = str[0];
+	struct stat buff1;
+	struct stat buff2;
+	while(str[i]){
+		j = 0;
+		stat(get_path(folder, str[i]), &buff1);
+		while(str[j]){
+			stat(get_path(folder, str[j]), &buff2);
+			if (buff2.st_mtime < buff1.st_mtime)
+			{
+				tmp = str[j];
+				str[j] = str[i];
+				str[i] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (str);
+}

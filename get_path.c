@@ -14,7 +14,7 @@
 
 //this method will be used to get the full path
 //the path will be passed to the stat function
-char            *get_path(char *folder, char *content)
+const char            *get_path(char *folder, char *content)
 {
     char *fullpath;
 

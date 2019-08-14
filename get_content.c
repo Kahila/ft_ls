@@ -38,7 +38,8 @@ void			get_content(int tot, struct dirent *files, DIR *mydir, char *folder)
 	}
 	content[tot] = NULL;
 	closedir(mydir2);
-    content = bubble_sort(content);
+    //content = bubble_sort(content);
+	content = flag_t(content, folder);
 	saveData(tot, content, lst, folder);
 	return;
 }

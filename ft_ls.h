@@ -47,7 +47,7 @@ void        count_content(struct dirent *files, DIR *mydir, char *folder);
 void	    file_info(char **content, char  *argv);
 int         valid_flag(int argc, char **argv);
 int         tot_leng(char **argv);
-char        *get_path(char *folder, char *content);
+const char        *get_path(char *folder, char *content);
 char        *permits(char *file);
 typedef struct s_list
 {
@@ -64,6 +64,7 @@ typedef struct s_list
 }           t_list;
 void        saveData(int, char**, t_list *, char *full_path);
 void        flag_l(t_list *lst, t_list *head);
+char		**flag_t(char **str, char *);
 enum        statusCodes
 {
     SUCCESS,
