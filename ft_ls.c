@@ -12,6 +12,7 @@
 #include "ft_ls.h"
 #include <stdio.h>//remember to remove
 
+///left of doing the t flag
 int main(int argc, char **argv)
 {
 	DIR *mydir;

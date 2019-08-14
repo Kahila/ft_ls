@@ -34,6 +34,31 @@ char 				**bubble_sort(char **str)
 	return (str);
 }
 
+//this method will be used to arrange the files befor sorting them
+char				**sort_first(char **str)
+{
+	int j;
+	int i;
+	i = 0;
+	char *tmp = str[0];
+	struct stat buff1;
+	struct stat buff2;
+	while(str[i]){
+		j = 0;
+		while(str[j]){
+			if (ft_strcmp(last_mod(str[i]), last_mod(str[j])) > 0)
+			{
+				tmp = str[j];
+				str[j] = str[i];
+				str[i] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (str);
+}
+
 //this method will sort the files accoring to the last modified
 char				**flag_t(char **str, char *folder)
 {
@@ -41,6 +66,7 @@ char				**flag_t(char **str, char *folder)
 	int i;
 	i = 0;
 	char *tmp = str[0];
+	str = sort_first(str);
 	struct stat buff1;
 	struct stat buff2;
 	while(str[i]){
