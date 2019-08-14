@@ -19,11 +19,12 @@ char            *permits(char *file)
     int i;
     char *str;
 
+    
     if ((stat(file, &buff) < 0))
     {
-            printf("%d\n", stat(file, &buff));
             return (NULL);
     }
+    i = stat(file, &buff);
     str = ft_memalloc(sizeof(char)*10);
     S_ISDIR(buff.st_mode) ? str[0] = 'd' : (str[0] = '-');
     (buff.st_mode & S_IRUSR) ? str[1] = 'r' : (str[1] = '-');
@@ -36,6 +37,5 @@ char            *permits(char *file)
     (buff.st_mode & S_IWOTH) ? str[8] = 'w' : (str[8] = '-');
     (buff.st_mode & S_IXOTH) ? str[9] = 'x' : (str[9] = '-');
     str[10] = '\0';
-    //printf("%s\n", str);
     return (str);
 }

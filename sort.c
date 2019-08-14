@@ -19,7 +19,6 @@ char 				**bubble_sort(char **str)
 	int i;
 	i = 0;
 	char *tmp = str[0];
-
 	while(str[i]){
 		j = 0;
 		while(str[j]){

@@ -75,7 +75,7 @@ void            saveData(int numFiles,char  **content, t_list *lst, char *folder
     lst = head.prev;
     while(lst != &head)
     {
-       //printf("%s \t\t%s\t%s\t%s\t%s\t%d\t%d\n", lst->fileName, lst->last_modified, lst->user, lst->group, lst->permits,lst->nLinks, lst->nBytes);
+       printf("\r%s\t%d\t%s\t%s\t%d\t%s\t%s\n", lst->permits, lst->nLinks, lst->user, lst->group, lst->nBytes, lst->last_modified, lst->fileName);
        lst = lst->prev;
      }
 }
