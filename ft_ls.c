@@ -10,18 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_ls.h"
-#include <stdio.h>//remember to remove
+#include <stdio.h> //remember to remove
 
-///left of doing the t flag
 int main(int argc, char **argv)
 {
 	DIR *mydir;
 	struct dirent *files;
+
 	char *folder = ft_strdup("./");
 	mydir = opendir(folder);
-	if (!mydir){
+	if (!mydir)
 		printf("fail to open\n");
-	}
 	count_content(files, mydir, folder);
 	closedir(mydir);
 	return (SUCCESS);

@@ -13,7 +13,7 @@
 #include "ft_ls.h"
 
 //this method will count the amount of content within the ./
-void			count_content(struct dirent *files, DIR *mydir, char *folder)
+void count_content(struct dirent *files, DIR *mydir, char *folder)
 {
 	int tot = 0;
 	while ((files = readdir(mydir)) != NULL)
@@ -22,11 +22,11 @@ void			count_content(struct dirent *files, DIR *mydir, char *folder)
 }
 
 //this method will be used to get the names of the files/folders
-void			get_content(int tot, struct dirent *files, DIR *mydir, char *folder)
+void get_content(int tot, struct dirent *files, DIR *mydir, char *folder)
 {
 	char **content;
 	int j = 0;
-    static t_list *lst;
+	static t_list *lst;
 	DIR *mydir2;
 	struct dirent *files2;
 	mydir2 = opendir(folder);
@@ -38,8 +38,9 @@ void			get_content(int tot, struct dirent *files, DIR *mydir, char *folder)
 	}
 	content[tot] = NULL;
 	closedir(mydir2);
-    //content = bubble_sort(content);
+	//content = bubble_sort(content);
 	content = flag_t(content, folder);
+	//content = sort_first(content);
 	saveData(tot, content, lst, folder);
 	return;
 }
