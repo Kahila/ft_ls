@@ -23,14 +23,9 @@ int main(int argc, char **argv)
 	mydir = opendir(folder);
 	if (!mydir)
 		printf("fail to open\n");
-	tot = count_content(files, mydir, folder);
+	tot = count(files, mydir, folder);
 	content = get_content(tot, folder);
-
-	// for (int i = 0; i < 2; i++)
-	// {
 	walktree(folder, dirs);
 	//closedir(mydir);
-	//	}
-	//count(content, ".");
 	return (SUCCESS);
 }

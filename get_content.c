@@ -13,7 +13,7 @@
 #include "ft_ls.h"
 
 //this method will count the amount of content within the ./
-int count_content(struct dirent *files, DIR *mydir, char *folder)
+int count(struct dirent *files, DIR *mydir, char *folder)
 {
 	int tot = 0;
 
@@ -68,6 +68,5 @@ char **get_content(int tot, char *folder)
 	//get_dir(content);
 	//content = flag_t(content, folder);
 	//content = sort_first(content);
-	printf("-----------------------------------------------------------\n");
 	return (content);
 }

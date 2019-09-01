@@ -74,7 +74,7 @@ void flag_l(t_list *lst, t_list *head);
 void revers_flag(int argc, char **content);
 void no_flags(int argc, char **content);
 void hidden_flag(int argc, char **content, char *argv);
-int count_content(struct dirent *files, DIR *mydir, char *folder);
+int count(struct dirent *files, DIR *mydir, char *folder);
 void file_info(char **content, char *argv);
 void flag_a(t_list *lst, t_list *head);
 void no_flag(t_list *lst, t_list *head);
