@@ -15,13 +15,22 @@
 int main(int argc, char **argv)
 {
 	DIR *mydir;
+	char **content;
+	int tot;
+	char **dirs;
 	struct dirent *files;
-
-	char *folder = ft_strdup("./");
+	char *folder = ft_strdup(".");
 	mydir = opendir(folder);
 	if (!mydir)
 		printf("fail to open\n");
-	count_content(files, mydir, folder);
-	closedir(mydir);
+	tot = count_content(files, mydir, folder);
+	content = get_content(tot, folder);
+
+	// for (int i = 0; i < 2; i++)
+	// {
+	walktree(folder, dirs);
+	//closedir(mydir);
+	//	}
+	//count(content, ".");
 	return (SUCCESS);
 }
