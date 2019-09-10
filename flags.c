@@ -87,27 +87,3 @@ void flag_r(t_list *lst, t_list *head)
         lst = lst->next;
     }
 }
-//method from Mosima
-// void print_rec(char *dir, char *ops)
-// {
-//     char **files;
-//     char **dirs;
-//     char *tempdir;
-//     char **temp2;
-//     ​
-//         files = get_filenames(dir, (ft_strchr(ops, 'a')) ? 'a' : '-');
-//     dirs = get_dirnames(dir, (ft_strchr(ops, 'a')) ? 'a' : '-');
-//     temp2 = dirs;
-//     sort_print(&files, &dirs, dir, ops);
-//     if (dirs)
-//         while (*dirs)
-//         {
-//             tempdir = ft_strjoin(dir, *dirs++);
-//             print_rec(tempdir, ops);
-//             free(tempdir);
-//         }
-//     if (temp2)
-//         strstr_del(&temp2);
-//     if (files)
-//         strstr_del(&files);
-// }

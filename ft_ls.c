@@ -12,6 +12,20 @@
 #include "ft_ls.h"
 #include <stdio.h> //remember to remove
 
+//method that will be used to display the content
+void print_content(char **content)
+{
+	int i;
+
+	i = 0;
+	while (content[i])
+	{
+		ft_putstr(content[i]);
+		ft_putchar('\n');
+		i++;
+	}
+}
+
 int main(int argc, char **argv)
 {
 	DIR *mydir;
@@ -19,13 +33,14 @@ int main(int argc, char **argv)
 	int tot;
 	char **dirs;
 	struct dirent *files;
-	char *folder = ft_strdup(".");
+	char *folder = ft_strdup(argv[1]);
 	mydir = opendir(folder);
 	if (!mydir)
 		printf("fail to open\n");
 	tot = count(files, mydir, folder);
 	content = get_content(tot, folder);
-	walktree(folder, dirs);
+	print_content(content);
+	//walktree(folder, dirs);
 	//closedir(mydir);
 	return (SUCCESS);
 }
