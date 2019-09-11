@@ -51,7 +51,6 @@ int main(int argc, char **argv)
 	char *folder = ft_strdup(".");
 	mydir = opendir(folder);
 	tot = check_flags(argc, argv, &flags);
-	printf(">>>%d\n", flags.l);
 	if (!mydir)
 		printf("fail to open\n");
 	tot = count(files, mydir, folder);

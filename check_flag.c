@@ -42,6 +42,7 @@ int check_flags(int argc, char **argv, t_flags *flags)
     {
         if (argv[j][0] != '-')
             return (INVALID_FLAG);
+        i = 1;
         while (argv[j][i])
         {
             if (argv[j][i] == 'a')
@@ -54,7 +55,7 @@ int check_flags(int argc, char **argv, t_flags *flags)
                 flags->r = 1;
             else if (argv[j][i] == 'R')
                 flags->R = 1;
-            else
+            else if (argv[j][i] != 'a' || argv[j][i] != 'r' || argv[j][i] != 't' || argv[j][i] != 'l' || argv[j][i] != 'R')
                 return (INVALID_FLAG);
             i++;
         }
