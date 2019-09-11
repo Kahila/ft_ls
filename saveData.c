@@ -51,7 +51,7 @@ void saveData(int i, char **content, t_list *lst, char *folder)
     t_list head;
     int hidden;
     int numFiles;
-    printf(">>>%d\n", folder);
+    printf(">>>%s\n", folder);
     if ((numFiles = i - 1000000) >= 0)
         hidden = HIDDEN_FILES;
     else
