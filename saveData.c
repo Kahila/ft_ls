@@ -51,7 +51,6 @@ void saveData(int i, char **content, t_list *lst, char *folder)
     t_list head;
     int hidden;
     int numFiles;
-    printf(">>>%s\n", folder);
     if ((numFiles = i - 1000000) >= 0)
         hidden = HIDDEN_FILES;
     else
@@ -64,7 +63,8 @@ void saveData(int i, char **content, t_list *lst, char *folder)
     head.prev = (t_list *)&head;
     while (i < numFiles)
     {
-        full_path = (char *)get_path(folder, content[i]);
+        full_path = get_path(folder, content[i]);
+        //printf(">>>%s\n", full_path);
         lst = ft_memalloc(sizeof(t_list));
         lst->fileName = content[i];
         lst->nLinks = get_nLinks(full_path);
