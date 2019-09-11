@@ -13,15 +13,12 @@
 #include <stdio.h> //remember to remove
 
 //method that will be used to display the content
-void print_content(char **content, t_flags *flags, int count)
+void print_content(char **content, t_flags *flags)
 {
 	int i;
 
-	if (flags->r == 1)
-		i = count - 1;
-	else
-		i = 0;
-	while (count-- != 0)
+	i = 0;
+	while (content[i])
 	{
 		if (flags->a == 1 && content[i][0] == '.')
 		{
@@ -33,10 +30,7 @@ void print_content(char **content, t_flags *flags, int count)
 			ft_putstr(content[i]);
 			ft_putchar('\n');
 		}
-		if (flags->r == 1)
-			i--;
-		else
-			i++;
+		i++;
 	}
 }
 
@@ -55,7 +49,7 @@ int main(int argc, char **argv)
 		printf("fail to open\n");
 	tot = count(files, mydir, folder);
 	content = get_content(tot, folder, flags);
-	print_content(content, &flags, tot);
+	print_content(content, &flags);
 	//walktree(folder, dirs);
 	closedir(mydir);
 	return (SUCCESS);

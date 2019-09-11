@@ -12,6 +12,29 @@
 
 #include "ft_ls.h"
 
+char **rev(char **content)
+{
+	char **str;
+
+	int i = 0;
+	int j = 0;
+
+	while (content[j])
+		j++;
+	str = (char **)malloc(sizeof(char *) * (j));
+	str[j] = NULL;
+	j--;
+	while (j >= 0)
+	{
+		//printf("here j = %d\n", j);
+		str[i] = content[j];
+		//printf("%s\n", str[i]);
+		j--;
+		i++;
+	}
+	return (str);
+}
+
 //this fuction will be used to sort
 char **bubble_sort(char **str)
 {

@@ -59,9 +59,11 @@ char **get_content(int tot, char *folder, t_flags flags)
 	closedir(mydir2);
 	content = bubble_sort(content);
 	//get_dir(content);
-	//if (flags.l == 1)
-	//	saveData(tot, content, lst, folder);
 	if (flags.t == 1)
 		content = flag_t(content, folder);
+	if (flags.r == 1)
+		content = rev(content);
+	if (flags.l == 1)
+		saveData(tot, content, lst, folder);
 	return (content);
 }

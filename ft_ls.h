@@ -72,6 +72,7 @@ int check_flags(int argc, char **argv, t_flags *flags);
 //char **get_dir(char **str);
 char *permits(char *file);
 char **flag_t(char **str, char *);
+char **rev(char **content);
 char *user(char *);
 char *group(char *);
 char **get_content(int tot, char *folder, t_flags flags);
