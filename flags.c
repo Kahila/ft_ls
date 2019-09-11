@@ -48,23 +48,20 @@ void flag_al(t_list *lst, t_list *head)
     hidden = 1;
     while (lst != head)
     {
-        //if (lst->fileName[0] != '.')
-        {
-            ft_putstr(lst->permits);
-            ft_putchar('\t');
-            ft_putnbr(lst->nLinks);
-            ft_putchar('\t');
-            ft_putstr(lst->user);
-            ft_putchar('\t');
-            ft_putstr(lst->group);
-            ft_putchar('\t');
-            ft_putnbr(lst->nBytes);
-            ft_putchar('\t');
-            ft_putstr(lst->last_modified);
-            ft_putchar('\t');
-            ft_putstr(lst->fileName);
-            ft_putchar('\n');
-        }
+        ft_putstr(lst->permits);
+        ft_putchar('\t');
+        ft_putnbr(lst->nLinks);
+        ft_putchar('\t');
+        ft_putstr(lst->user);
+        ft_putchar('\t');
+        ft_putstr(lst->group);
+        ft_putchar('\t');
+        ft_putnbr(lst->nBytes);
+        ft_putchar('\t');
+        ft_putstr(lst->last_modified);
+        ft_putchar('\t');
+        ft_putstr(lst->fileName);
+        ft_putchar('\n');
         lst = lst->prev;
     }
 }
