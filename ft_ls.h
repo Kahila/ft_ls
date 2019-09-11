@@ -38,12 +38,21 @@ enum statusCodes
 {
     SUCCESS,
     VALID_FLAG,
-    INVALID_FLAG,
+    INVALID_FLAG = -1,
     IS_FILE,
     IS_FOLDER,
     FAILED,
     FAILED_TO_READ_FILE_INFO
 };
+typedef struct s_flags
+{
+    int l;
+    int a;
+    int r;
+    int t;
+    int R;
+} t_flags;
+
 typedef struct s_list
 {
     int nLinks;
@@ -58,13 +67,14 @@ typedef struct s_list
     struct s_list *prev;
 } t_list;
 char *get_path(char *folder, char *content);
+int check_flags(int argc, char **argv, t_flags *flags);
 //char **get_dir(t_list *lst, char *folder, t_list *head)
 //char **get_dir(char **str);
 char *permits(char *file);
 char **flag_t(char **str, char *);
 char *user(char *);
 char *group(char *);
-char **get_content(int tot, char *folder);
+char **get_content(int tot, char *folder, t_flags flags);
 char *last_mod(char *);
 char *get_flags(int argc, char **argv);
 char **bubble_sort(char **str);
@@ -79,7 +89,7 @@ void file_info(char **content, char *argv);
 void flag_a(t_list *lst, t_list *head);
 void no_flag(t_list *lst, t_list *head);
 void flag_r(t_list *lst, t_list *head);
-void walktree(char *fullpath, char **);
+void walktree(char *fullpath, char **, t_flags flags);
 int get_nLinks(char *content);
 //int count_dir(t_list *lst, t_list *head, char *folder);
 int count_dir(char **str);

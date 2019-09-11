@@ -63,7 +63,7 @@ char *get_path(char *folder, char *content)
 // method will be used to walk the directory tree
 // will display the content of all the directories that have been walked
 // void walktree(char *fullpath, char **str)
-void walktree(char *fullpath, char **dirs)
+void walktree(char *fullpath, char **dirs, t_flags flags)
 {
     int i;
     char *child;
@@ -75,7 +75,7 @@ void walktree(char *fullpath, char **dirs)
     mydir = opendir(child);
     if (!mydir)
         printf("fail to open\n");
-    content = get_content(count(files, mydir, child), child);
+    content = get_content(count(files, mydir, child), child, flags);
     if (child && content)
         dirs = get_dir(content, child);
     i = 0;
@@ -86,7 +86,7 @@ void walktree(char *fullpath, char **dirs)
         if (ft_strlen(dirs[i]) > 0)
             child = get_path(fullpath, dirs[i]);
         if (ft_strlen(dirs[i]) > 0)
-            walktree(child, &dirs[i]);
+            walktree(child, &dirs[i], flags);
         i++;
     }
 }

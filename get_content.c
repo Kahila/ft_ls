@@ -41,7 +41,7 @@ int count_dir(char **str)
 }
 
 //this method will be used to get the names of the files/folders
-char **get_content(int tot, char *folder)
+char **get_content(int tot, char *folder, t_flags flags)
 {
 	char **content;
 	int j = 0;
@@ -58,15 +58,11 @@ char **get_content(int tot, char *folder)
 	content[tot] = NULL;
 	closedir(mydir2);
 	content = bubble_sort(content);
-	// int i = 0;
-	// while (content[i])
-	// {
-	// 	printf("%s\n", content[i]);
-	// 	i++;
-	// }
-	//saveData(tot, content, lst, folder);
 	//get_dir(content);
-	//content = flag_t(content, folder);
+	//if (flags.l == 1)
+	//	saveData(tot, content, lst, folder);
+	if (flags.t == 1)
+		content = flag_t(content, folder);
 	//content = sort_first(content);
 	return (content);
 }

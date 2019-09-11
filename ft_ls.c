@@ -13,15 +13,23 @@
 #include <stdio.h> //remember to remove
 
 //method that will be used to display the content
-void print_content(char **content)
+void print_content(char **content, t_flags *flags)
 {
 	int i;
 
 	i = 0;
 	while (content[i])
 	{
-		ft_putstr(content[i]);
-		ft_putchar('\n');
+		if (flags->a == 1 && content[i][0] == '.')
+		{
+			ft_putstr(content[i]);
+			ft_putchar('\n');
+		}
+		else if (content[i][0] != '.')
+		{
+			ft_putstr(content[i]);
+			ft_putchar('\n');
+		}
 		i++;
 	}
 }
@@ -30,17 +38,19 @@ int main(int argc, char **argv)
 {
 	DIR *mydir;
 	char **content;
+	t_flags flags;
 	int tot;
 	char **dirs;
 	struct dirent *files;
-	char *folder = ft_strdup(argv[1]);
+	char *folder = ft_strdup(".");
 	mydir = opendir(folder);
+	tot = check_flags(argc, argv, &flags);
 	if (!mydir)
 		printf("fail to open\n");
 	tot = count(files, mydir, folder);
-	content = get_content(tot, folder);
-	print_content(content);
+	content = get_content(tot, folder, flags);
+	print_content(content, &flags);
 	//walktree(folder, dirs);
-	//closedir(mydir);
+	closedir(mydir);
 	return (SUCCESS);
 }

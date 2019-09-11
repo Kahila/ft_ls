@@ -12,72 +12,53 @@
 
 #include "ft_ls.h"
 
-//method will be used to check if the given flag is valid or not
-int             valid_flag(int argc, char **argv)
+//method that will count the number of flags
+int count_flag(t_flags *flags)
+{
+    int count;
+
+    count = 0;
+    if (flags->a == 1)
+        count++;
+    if (flags->l == 1)
+        count++;
+    if (flags->t == 1)
+        count++;
+    if (flags->R == 1)
+        count++;
+    if (flags->r == 1)
+        count++;
+    return (count);
+}
+
+//method that will be used to dertermine the flags passed
+int check_flags(int argc, char **argv, t_flags *flags)
 {
     int i;
     int j;
 
-    if (argc > 1)
+    j = i = 1;
+    while (argv[j])
     {
-        i = 1;
-        while(argv[i])
+        if (argv[j][0] != '-')
+            return (INVALID_FLAG);
+        while (argv[j][i])
         {
-            j = 1;
-            while(argv[i][j])
-            {
-                if (argv[i][0] != '-')
-                    return (INVALID_FLAG);
-                if (argv[i][j] != 'r' || argv[i][j] != 't' || argv[i][j] != 'a' || argv[i][j] != 'l' || argv[i][j] != 'R')
-                    return (INVALID_FLAG);
-                j++;
-            }
+            if (argv[j][i] == 'a')
+                flags->a = 1;
+            else if (argv[j][i] == 'l')
+                flags->l = 1;
+            else if (argv[j][i] == 't')
+                flags->t = 1;
+            else if (argv[j][i] == 'r')
+                flags->r = 1;
+            else if (argv[j][i] == 'R')
+                flags->R = 1;
+            else
+                return (INVALID_FLAG);
             i++;
         }
+        j++;
     }
     return (VALID_FLAG);
-}
-
-//method that will be used to get the total length of all the flags added
-int             tot_leng(char **argv)
-{
-    int size;
-    int i;
-
-    i = 1;
-    while (argv[i])
-    {
-        size += ft_strlen(argv[i]);
-        size--;
-        i++;
-    }
-    return (size);
-}
-
-//method that will be used to check which flag has been passed
-char            *get_flags(int argc, char **argv)
-{
-    char *flags;
-    int i;
-    int j;
-    int k;
-
-    i = 1;
-    k = 0;
-    if (argc == 1)
-        return (NULL);
-    flags = (char*)malloc(sizeof(char)* tot_leng(argv) + 1);
-    while(argv[i])
-    {
-        j = 1;
-        while(argv[i][j])
-        {
-            flags[k] = argv[i][j];
-            j++;
-            k++;
-        }
-        i++;
-    }
-    flags[k] = '\0';
-    return (flags);
 }
