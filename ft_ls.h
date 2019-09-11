@@ -87,6 +87,7 @@ void no_flags(int argc, char **content);
 void hidden_flag(int argc, char **content, char *argv);
 int count(struct dirent *files, DIR *mydir, char *folder);
 void file_info(char **content, char *argv);
+void flag_al(t_list *lst, t_list *head);
 void flag_a(t_list *lst, t_list *head);
 void no_flag(t_list *lst, t_list *head);
 void flag_r(t_list *lst, t_list *head);

@@ -18,7 +18,7 @@ void print_content(char **content, t_flags *flags)
 	int i;
 
 	i = 0;
-	while (content[i])
+	while (content[i] && flags->l != 1)
 	{
 		if (flags->a == 1 && content[i][0] == '.')
 		{
