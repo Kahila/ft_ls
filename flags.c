@@ -71,19 +71,19 @@ void no_flag(t_list *lst, t_list *head)
 }
 
 //method will be used to dislay list in reverse
-void flag_r(t_list *lst, t_list *head)
-{
-    int i;
+// void flag_r(t_list *lst, t_list *head)
+// {
+//     int i;
 
-    i = 0;
-    while (lst != head)
-    {
-        if (lst->fileName[i] != '.')
-        {
-            ft_putstr(lst->fileName);
-            ft_putchar('\n');
-        }
-        i++;
-        lst = lst->next;
-    }
-}
+//     i = 0;
+//     while (lst != head)
+//     {
+//         if (lst->fileName[i] != '.')
+//         {
+//             ft_putstr(lst->fileName);
+//             ft_putchar('\n');
+//         }
+//         i++;
+//         lst = lst->next;
+//     }
+// }

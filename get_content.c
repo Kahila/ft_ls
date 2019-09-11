@@ -63,6 +63,5 @@ char **get_content(int tot, char *folder, t_flags flags)
 	//	saveData(tot, content, lst, folder);
 	if (flags.t == 1)
 		content = flag_t(content, folder);
-	//content = sort_first(content);
 	return (content);
 }
