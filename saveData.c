@@ -45,12 +45,21 @@ int nBytes(char *content)
 
 //working with lists
 //storing all the data about the file within the lst node
-void saveData(int numFiles, char **content, t_list *lst, char *folder)
+void saveData(int j, char **content, t_list *lst, char *folder)
 {
     char *full_path;
     t_list head;
     int i;
+    int hidden;
+    int numFiles;
 
+    if ((numFiles = j - 1000000) >= 0)
+        hidden = HIDDEN_FILES;
+    else
+    {
+        numFiles = j;
+        hidden = 0;
+    }
     i = 0;
     head.next = (t_list *)&head;
     head.prev = (t_list *)&head;
@@ -73,5 +82,8 @@ void saveData(int numFiles, char **content, t_list *lst, char *folder)
         i++;
     }
     lst = head.prev;
-    flag_l(lst, &head);
+    if (hidden == HIDDEN_FILES)
+        flag_al(lst, &head);
+    else
+        flag_l(lst, &head);
 }

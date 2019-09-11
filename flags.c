@@ -12,37 +12,36 @@
 
 #include "ft_ls.h"
 
-//method that will not print the hidden flags
-// void flag_al(t_list *lst, t_list *head)
-// {
-//     int hidden;
-
-//     hidden = 1;
-//     while (lst != head)
-//     {
-//         if (lst->fileName[0] != '.')
-//         {
-//             ft_putstr(lst->permits);
-//             ft_putchar('\t');
-//             ft_putnbr(lst->nLinks);
-//             ft_putchar('\t');
-//             ft_putstr(lst->user);
-//             ft_putchar('\t');
-//             ft_putstr(lst->group);
-//             ft_putchar('\t');
-//             ft_putnbr(lst->nBytes);
-//             ft_putchar('\t');
-//             ft_putstr(lst->last_modified);
-//             ft_putchar('\t');
-//             ft_putstr(lst->fileName);
-//             ft_putchar('\n');
-//         }
-//         lst = lst->prev;
-//     }
-// }
-
 //this method will be used to handle the flags
 void flag_l(t_list *lst, t_list *head)
+{
+    int hidden;
+
+    hidden = 1;
+    while (lst != head)
+    {
+        if (lst->fileName[0] != '.')
+        {
+            ft_putstr(lst->permits);
+            ft_putchar('\t');
+            ft_putnbr(lst->nLinks);
+            ft_putchar('\t');
+            ft_putstr(lst->user);
+            ft_putchar('\t');
+            ft_putstr(lst->group);
+            ft_putchar('\t');
+            ft_putnbr(lst->nBytes);
+            ft_putchar('\t');
+            ft_putstr(lst->last_modified);
+            ft_putchar('\t');
+            ft_putstr(lst->fileName);
+            ft_putchar('\n');
+        }
+        lst = lst->prev;
+    }
+}
+
+void flag_al(t_list *lst, t_list *head)
 {
     int hidden;
 

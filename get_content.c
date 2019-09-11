@@ -19,7 +19,6 @@ int count(struct dirent *files, DIR *mydir, char *folder)
 
 	while ((files = readdir(mydir)) != NULL)
 		tot++;
-	//get_content(tot, folder);
 	return tot;
 }
 
@@ -48,6 +47,7 @@ char **get_content(int tot, char *folder, t_flags flags)
 	static t_list *lst;
 	DIR *mydir2;
 	struct dirent *files2;
+
 	mydir2 = opendir(folder);
 	content = (char **)malloc(sizeof(char *) * (tot));
 	while ((files2 = readdir(mydir2)) != NULL)
@@ -63,7 +63,9 @@ char **get_content(int tot, char *folder, t_flags flags)
 		content = flag_t(content, folder);
 	if (flags.r == 1)
 		content = rev(content);
-	if (flags.l == 1)
+	if (flags.l == 1 && flags.a != 1)
 		saveData(tot, content, lst, folder);
+	if (flags.l == 1 && flags.a == 1)
+		saveData((tot + 1000000), content, lst, folder);
 	return (content);
 }
