@@ -34,6 +34,55 @@ void print_content(char **content, t_flags *flags)
 	}
 }
 
+//method that will be used o find the number of dirs passed to the program
+int num_dir(int argc, char **argv)
+{
+	int count;
+	int i;
+	DIR *mydir;
+
+	i = 0;
+	count = 0;
+	while (argv[i])
+	{
+		mydir = opendir(argv[i]);
+		if (mydir)
+		{
+			count++;
+			closedir(mydir);
+		}
+		i++;
+	}
+	return (count);
+}
+
+//method that will be used to save the dirs passed to programe
+char **save_dirs(int argc, char **argv)
+{
+	int tot;
+	char **dir;
+	DIR *mydir;
+	int i;
+	int j;
+
+	tot = num_dir(argc, argv);
+	dir = (char **)malloc(sizeof(char *) * (tot + 1));
+	dir[tot + 1] = NULL;
+	i = 0;
+	j = 1;
+	while (j <= argc)
+	{
+		mydir = opendir(argv[j]);
+		if (mydir)
+		{
+			dir[i] = argv[j];
+			i++;
+		}
+		j++;
+	}
+	return (dir);
+}
+
 int main(int argc, char **argv)
 {
 	DIR *mydir;
@@ -42,9 +91,19 @@ int main(int argc, char **argv)
 	int tot;
 	char **dirs;
 	struct dirent *files;
-	char *folder = ft_strdup(".");
-	mydir = opendir(folder);
+
 	tot = check_flags(argc, argv, &flags);
+	if (tot == INVALID_FLAG)
+		dirs = save_dirs(argc, argv);
+	if ((num_dir(argc, argv)) == 0 && tot == INVALID_FLAG)
+	{
+		ft_putstr("invalid input");
+		return (INVALID_FLAG);
+	}
+	char *folder = ft_strdup(".");
+	//	printf(">>>>%d\n", num_dir(argc, argv));
+	mydir = opendir(folder);
+	//	printf(">>>>tot = %d\n", tot);
 	if (!mydir)
 		printf("fail to open\n");
 	tot = count(files, mydir, folder);

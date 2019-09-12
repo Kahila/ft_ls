@@ -13,23 +13,23 @@
 #include "ft_ls.h"
 
 //method that will count the number of flags
-int count_flag(t_flags *flags)
-{
-    int count;
+// int count_flag(t_flags *flags)
+// {
+//     int count;
 
-    count = 0;
-    if (flags->a == 1)
-        count++;
-    if (flags->l == 1)
-        count++;
-    if (flags->t == 1)
-        count++;
-    if (flags->R == 1)
-        count++;
-    if (flags->r == 1)
-        count++;
-    return (count);
-}
+//     count = 0;
+//     if (flags->a == 1)
+//         count++;
+//     if (flags->l == 1)
+//         count++;
+//     if (flags->t == 1)
+//         count++;
+//     if (flags->R == 1)
+//         count++;
+//     if (flags->r == 1)
+//         count++;
+//     return (count);
+// }
 
 //method that will be used to dertermine the flags passed
 int check_flags(int argc, char **argv, t_flags *flags)
