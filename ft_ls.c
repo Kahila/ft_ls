@@ -66,8 +66,8 @@ char **save_dirs(int argc, char **argv)
 	int j;
 
 	tot = num_dir(argc, argv);
-	dir = (char **)malloc(sizeof(char *) * (tot + 1));
-	dir[tot + 1] = NULL;
+	dir = (char **)malloc(sizeof(char *) * (tot));
+	dir[tot] = NULL;
 	i = 0;
 	j = 1;
 	while (j <= argc)
@@ -83,24 +83,12 @@ char **save_dirs(int argc, char **argv)
 	return (dir);
 }
 
-int main(int argc, char **argv)
+//method that will loop through each folder
+void ft_ls(char *folder, struct dirent *files, t_flags flags, char **content)
 {
 	DIR *mydir;
-	char **content;
-	t_flags flags;
 	int tot;
-	char **dirs;
-	struct dirent *files;
-
-	tot = check_flags(argc, argv, &flags);
-	if (tot == INVALID_FLAG)
-		dirs = save_dirs(argc, argv);
-	if ((num_dir(argc, argv)) == 0 && tot == INVALID_FLAG)
-	{
-		ft_putstr("invalid input");
-		return (INVALID_FLAG);
-	}
-	char *folder = ft_strdup(".");
+	//folder = ft_strdup();
 	//	printf(">>>>%d\n", num_dir(argc, argv));
 	mydir = opendir(folder);
 	//	printf(">>>>tot = %d\n", tot);
@@ -111,5 +99,36 @@ int main(int argc, char **argv)
 	print_content(content, &flags);
 	//walktree(folder, dirs);
 	closedir(mydir);
+}
+
+int main(int argc, char **argv)
+{
+	char **content;
+	t_flags flags;
+	int tot;
+	char **dirs;
+	int i;
+	struct dirent *files;
+
+	tot = check_flags(argc, argv, &flags);
+	if (tot == INVALID_FLAG)
+		dirs = save_dirs(argc, argv);
+	else if ((num_dir(argc, argv)) == 0 && tot == INVALID_FLAG)
+	{
+		ft_putstr("invalid input");
+		return (INVALID_FLAG);
+	}
+	if ((tot = num_dir(argc, argv)) == 0)
+		ft_ls(".", files, flags, content);
+	else
+	{
+		i = 0;
+		while (i < tot)
+		{
+			ft_ls(dirs[i], files, flags, content);
+			ft_putchar('\n');
+			i++;
+		}
+	}
 	return (SUCCESS);
 }
