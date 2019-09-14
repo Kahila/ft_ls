@@ -71,9 +71,12 @@ int num_files(int argc, char **argv)
 	while (argv[i] && argc > 1)
 	{
 		mydir = opendir(argv[i]);
-		printf("here\n");
-		if (!mydir && argv[i][0] != '-')
-			count++;
+		//printf("here\n");
+		if (!mydir)
+		{
+			if (argv[i][0] != '-')
+				count++;
+		}
 		else
 			closedir(mydir);
 		i++;
@@ -123,8 +126,11 @@ char **save_files(int argc, char **argv)
 		mydir = opendir(argv[j]);
 		if (!mydir)
 		{
-			dir[i] = argv[j];
-			i++;
+			if (argv[j][0] != '-')
+			{
+				dir[i] = argv[j];
+				i++;
+			}
 		}
 		else
 			closedir(mydir);
@@ -214,7 +220,7 @@ int main(int argc, char **argv)
 		i = 0;
 		while (i < tot)
 		{
-			valid_file(save_(tot, dirs[i]), sFiles);
+			//valid_file(save_(tot, dirs[i]), sFiles);
 			ft_ls(dirs[i], files, flags, content);
 			ft_putchar('\n');
 			i++;
