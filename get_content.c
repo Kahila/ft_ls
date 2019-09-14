@@ -39,8 +39,30 @@ int count_dir(char **str)
 	return (j);
 }
 
+//method that will be used to get the content within a folder
+char **save_(int tot, char *folder)
+{
+	char **content;
+	int j = 0;
+	DIR *mydir2;
+	struct dirent *files2;
+
+	mydir2 = opendir(folder);
+	content = (char **)malloc(sizeof(char *) * (tot));
+	while ((files2 = readdir(mydir2)) != NULL)
+	{
+		content[j] = ft_strdup(files2->d_name);
+		j++;
+	}
+	content[tot] = NULL;
+	closedir(mydir2);
+	content = bubble_sort(content);
+
+	return (content);
+}
+
 //this method will be used to get the names of the files/folders
-char **get_content(int tot, char *folder, t_flags flags)
+char ** get_content(int tot, char *folder, t_flags flags)
 {
 	char **content;
 	int j = 0;
@@ -67,5 +89,6 @@ char **get_content(int tot, char *folder, t_flags flags)
 		saveData(tot, content, lst, folder);
 	if (flags.l == 1 && flags.a == 1)
 		saveData((tot + 1000000), content, lst, folder);
+	
 	return (content);
 }

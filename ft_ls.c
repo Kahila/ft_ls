@@ -12,6 +12,31 @@
 #include "ft_ls.h"
 #include <stdio.h> //remember to remove
 
+//method that will be used to check if the parsed file is a folder or not
+void valid_file(char **content, char **args)
+{
+	int i;
+	int j;
+
+	i = 0;
+	printf("here\n");
+	while (args[i])
+	{
+		j = 0;
+		while (content[j])
+		{
+			printf(">>>%s\n", content[j]);
+			if ((ft_strcmp(args[i], content[j])) == 0)
+			{
+				ft_putstr(args[i]);
+				ft_putstr(" : no such file or directory\n");
+			}
+			j++;
+		}
+		i++;	
+	}
+}
+
 //method that will be used to display the content
 void print_content(char **content, t_flags *flags)
 {
@@ -34,6 +59,27 @@ void print_content(char **content, t_flags *flags)
 	}
 }
 
+//method that will be used to get files that are not folders
+int num_files(int argc, char **argv)
+{
+	int count;
+	int i;
+	DIR *mydir;
+
+	i = 1;
+	count = 0;
+	while (argv[i] && argc > 1)
+	{
+		mydir = opendir(argv[i]);
+		if (!mydir)
+			count++;
+		else
+			closedir(mydir);
+		i++;
+	}
+	return (count);
+}
+
 //method that will be used o find the number of dirs passed to the program
 int num_dir(int argc, char **argv)
 {
@@ -54,6 +100,37 @@ int num_dir(int argc, char **argv)
 		i++;
 	}
 	return (count);
+}
+
+//method that will be used to save the other files that are not folders
+char **save_files(int argc, char **argv)
+{
+	int tot;
+	char **dir;
+	DIR *mydir;
+	int i;
+	int j;
+
+	tot = num_files(argc, argv);
+	if (tot > 0)
+		dir = (char **)malloc(sizeof(char *) * (tot));
+	dir[tot] = NULL;
+	i = 0;
+	j = 1;
+	while (j <= argc)
+	{
+		mydir = opendir(argv[j]);
+		if (!mydir)
+		{
+			dir[i] = argv[j];
+			i++;
+		}
+		else
+			closedir(mydir);
+		
+		j++;
+	}
+	return (dir);
 }
 
 //method that will be used to save the dirs passed to programe
@@ -89,15 +166,13 @@ void ft_ls(char *folder, struct dirent *files, t_flags flags, char **content)
 	DIR *mydir;
 	int tot;
 	//folder = ft_strdup();
-	//	printf(">>>>%d\n", num_dir(argc, argv));
+	//printf(">>>>%d\n", num_dir(argc, argv));
 	mydir = opendir(folder);
-	//	printf(">>>>tot = %d\n", tot);
 	if (!mydir)
 		printf("fail to open\n");
 	tot = count(files, mydir, folder);
 	content = get_content(tot, folder, flags);
 	print_content(content, &flags);
-	//walktree(folder, dirs);
 	closedir(mydir);
 }
 
@@ -107,24 +182,38 @@ int main(int argc, char **argv)
 	t_flags flags;
 	int tot;
 	char **dirs;
+	char **sFiles;
 	int i;
 	struct dirent *files;
 
 	tot = check_flags(argc, argv, &flags);
+	printf(">>>%d\n", num_files(argc,argv));
+	if (argc > 1)
+	{
+		sFiles = save_files(argc, argv);
+		int j = 0;
+		while(sFiles[j])
+		{
+			printf(">>>>>>>>>%s\n", sFiles[j]);
+			j++;
+		}
+	}
+	printf(">>>output == %d\n", tot);
 	if (tot == INVALID_FLAG)
 		dirs = save_dirs(argc, argv);
-	else if ((num_dir(argc, argv)) == 0 && tot == INVALID_FLAG)
+	if ((num_dir(argc, argv)) == 0 && tot == INVALID_FLAG)
 	{
-		ft_putstr("invalid input");
+		ft_putstr("invalid input\n");
 		return (INVALID_FLAG);
 	}
-	if ((tot = num_dir(argc, argv)) == 0)
+	else if ((tot = num_dir(argc, argv)) == 0)
 		ft_ls(".", files, flags, content);
 	else
 	{
 		i = 0;
 		while (i < tot)
 		{
+			valid_file(save_(tot, dirs[i]), sFiles);
 			ft_ls(dirs[i], files, flags, content);
 			ft_putchar('\n');
 			i++;
