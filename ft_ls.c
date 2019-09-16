@@ -17,24 +17,34 @@ void valid_file(char **content, char **args)
 {
 	int i;
 	int j;
+	int found;
 
 	i = 0;
-	printf("here\n");
+	found = 0;
+	while (args[i])
+	{
+		printf("====%s", args[i]);
+		i++;
+	}
+	i = 0;
 	while (args[i])
 	{
 		j = 0;
 		while (content[j])
 		{
-			printf(">>>%s\n", content[j]);
+			//printf(">>>%s\n", content[j]);
+			printf("+++here\n");
 			if ((ft_strcmp(args[i], content[j])) == 0)
 			{
 				ft_putstr(args[i]);
-				ft_putstr(" : no such file or directory\n");
+				found = 1;
 			}
 			j++;
 		}
-		i++;	
+		i++;
 	}
+	if (found == 0)
+		ft_putstr(" : no such file or directory\n");
 }
 
 //method that will be used to display the content
@@ -121,7 +131,7 @@ char **save_files(int argc, char **argv)
 	dir[tot] = NULL;
 	i = 0;
 	j = 1;
-	while (j <= argc)
+	while (j < argc)
 	{
 		mydir = opendir(argv[j]);
 		if (!mydir)
@@ -134,7 +144,7 @@ char **save_files(int argc, char **argv)
 		}
 		else
 			closedir(mydir);
-		
+
 		j++;
 	}
 	return (dir);
@@ -194,17 +204,20 @@ int main(int argc, char **argv)
 	struct dirent *files;
 
 	tot = check_flags(argc, argv, &flags);
-	printf(">>>%d\n", num_files(argc,argv));
-	// if (argc > 1)
-	// {
-	// 	sFiles = save_files(argc, argv);
-	// 	int j = 0;
-	// 	while(sFiles[j])
-	// 	{
-	// 		printf(">>>>>>>>>%s\n", sFiles[j]);
-	// 		j++;
-	// 	}
-	// }
+	printf(">>>%d\n", num_files(argc, argv));
+	int s = 0;
+	if ((num_files(argc, argv)) > 0)
+	{
+		sFiles = save_files(argc, argv);
+		int j = 0;
+		//if ((num_files(argc, argv)) > 0)
+		//	valid_file(content, sFiles);
+		while (sFiles[j])
+		{
+			printf("--------%s\n", sFiles[j]);
+			j++;
+		}
+	}
 	printf(">>>output == %d\n", tot);
 	if (tot == INVALID_FLAG)
 		dirs = save_dirs(argc, argv);
@@ -221,6 +234,14 @@ int main(int argc, char **argv)
 		while (i < tot)
 		{
 			//valid_file(save_(tot, dirs[i]), sFiles);
+			content = save_(dirs[i]);
+			// while (content[s])
+			// {
+			// 	printf(">>>>>%s\n", content[s]);
+			// 	s++;
+			// }
+
+			ft_putchar('\n');
 			ft_ls(dirs[i], files, flags, content);
 			ft_putchar('\n');
 			i++;
