@@ -43,9 +43,7 @@ void valid_file(char **content, char **args)
 		}
 		if (found == 0)
 		{
-			ft_putstr("ls: ");
-			ft_putstr(args[i]);
-			ft_putstr(" : No such file or directory\n");
+				pathed_file(args[i]);
 		}
 		i++;
 	}

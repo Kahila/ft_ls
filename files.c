@@ -34,6 +34,7 @@ int path_(char *str)
 	{
 		if (str[i] == '/')
 			return (1);
+		i++;
 	}
 	return (0);
 }
@@ -48,7 +49,7 @@ void pathed_file(char *dirs)
 
 		path = split_path(dirs); 
 		content = save_(path);	
-}
+	}
 	ft_putstr("ls: ");
 	ft_putstr(dirs);
 	ft_putstr(" : No such file or directory\n");
