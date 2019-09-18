@@ -22,8 +22,6 @@ char *split_path(char *dir)
 	char *path;
 
 	j = i = 0;
-	// while (dir[i])
-	// 	i++;
 	i = ft_strlen(dir);
 	while (dir[i] != '/')
 		i--;
@@ -72,7 +70,6 @@ void pathed_file(char *dirs)
 		printf("==== %s\n", file);
 		printf(">>>>>%s\n", path);
 		content = save_(path);
-		//printf("///////here end\n");
 	}
 	ft_putstr("ls: ");
 	ft_putstr(dirs);
