@@ -12,6 +12,12 @@
 #include "ft_ls.h"
 #include <stdio.h> //remember to remove
 
+//---last action ... finding other method to display single files
+//sort functions within other files of max 4 functions each
+//check permition for sticky bits
+//check for leaks and norm
+//save and work on -R
+
 //method that will be used to check if the parsed file is a folder or not
 void valid_file(char **content, char **args)
 {
@@ -19,32 +25,30 @@ void valid_file(char **content, char **args)
 	int j;
 	int found;
 
-	i = 0;
-	found = 0;
-	while (args[i])
-	{
-		printf("====%s", args[i]);
-		i++;
-	}
-	i = 0;
+	found = i = 0;
 	while (args[i])
 	{
 		j = 0;
 		while (content[j])
 		{
 			//printf(">>>%s\n", content[j]);
-			printf("+++here\n");
+			//printf("+++here\n");
 			if ((ft_strcmp(args[i], content[j])) == 0)
 			{
 				ft_putstr(args[i]);
+				ft_putchar('\n');
 				found = 1;
 			}
 			j++;
 		}
+		if (found == 0)
+		{
+			ft_putstr("ls: ");
+			ft_putstr(args[i]);
+			ft_putstr(" : No such file or directory\n");
+		}
 		i++;
 	}
-	if (found == 0)
-		ft_putstr(" : no such file or directory\n");
 }
 
 //method that will be used to display the content
@@ -209,16 +213,10 @@ int main(int argc, char **argv)
 	if ((num_files(argc, argv)) > 0)
 	{
 		sFiles = save_files(argc, argv);
-		int j = 0;
-		//if ((num_files(argc, argv)) > 0)
-		//	valid_file(content, sFiles);
-		while (sFiles[j])
-		{
-			printf("--------%s\n", sFiles[j]);
-			j++;
-		}
+		content = save_(".");
+		valid_file(content, sFiles);
 	}
-	printf(">>>output == %d\n", tot);
+	//printf(">>>output == %d\n", tot);
 	if (tot == INVALID_FLAG)
 		dirs = save_dirs(argc, argv);
 	if ((num_dir(argc, argv)) == 0 && tot == INVALID_FLAG)
@@ -233,14 +231,6 @@ int main(int argc, char **argv)
 		i = 0;
 		while (i < tot)
 		{
-			//valid_file(save_(tot, dirs[i]), sFiles);
-			content = save_(dirs[i]);
-			// while (content[s])
-			// {
-			// 	printf(">>>>>%s\n", content[s]);
-			// 	s++;
-			// }
-
 			ft_putchar('\n');
 			ft_ls(dirs[i], files, flags, content);
 			ft_putchar('\n');

@@ -84,6 +84,7 @@ void saveData(int, char **, t_list *, char *full_path);
 void flag_l(t_list *lst, t_list *head);
 void revers_flag(int argc, char **content);
 void no_flags(int argc, char **content);
+void pathed_file(char *dirs);
 void hidden_flag(int argc, char **content, char *argv);
 int count(struct dirent *files, DIR *mydir, char *folder);
 void file_info(char **content, char *argv);
