@@ -68,8 +68,6 @@ void pathed_file(char *dirs)
 
 		path = split_path(dirs);
 		file = ft_strrchr(dirs, '/');
-		//split_file(dirs);
-		//printf("///////here\n");
 		file++;
 		printf("==== %s\n", file);
 		printf(">>>>>%s\n", path);
