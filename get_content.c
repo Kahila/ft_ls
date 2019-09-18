@@ -51,14 +51,14 @@ char **save_(char *folder)
 	mydir2 = opendir(folder);
 	if (!mydir2)
 		tot = count(files2, mydir2, folder);
-	content = (char **)malloc(sizeof(char *) * (tot));
+	content = (char **)malloc(sizeof(char *) * (tot + 1));
 	printf("....here\n");
 	while ((files2 = readdir(mydir2)) != NULL)
 	{
 		content[j] = ft_strdup(files2->d_name);
 		j++;
 	}
-	content[tot] = NULL;
+	content[tot + 1] = NULL;
 	closedir(mydir2);
 
 	return (content);
