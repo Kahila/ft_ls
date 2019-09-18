@@ -49,18 +49,20 @@ char **save_(char *folder)
 	struct dirent *files2;
 
 	mydir2 = opendir(folder);
-	if (!mydir2)
+	if (mydir2)
 		tot = count(files2, mydir2, folder);
-	content = (char **)malloc(sizeof(char *) * (tot + 1));
-	printf("....here\n");
+	else
+		return NULL;
+	content = (char **)malloc(sizeof(char *) * (tot));
 	while ((files2 = readdir(mydir2)) != NULL)
 	{
+		//printf("....here\n");
 		content[j] = ft_strdup(files2->d_name);
+		//printf(".....after\n");
 		j++;
 	}
-	content[tot + 1] = NULL;
+	content[tot] = NULL;
 	closedir(mydir2);
-
 	return (content);
 }
 

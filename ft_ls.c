@@ -32,7 +32,6 @@ void valid_file(char **content, char **args)
 		while (content[j])
 		{
 			//printf(">>>%s\n", content[j]);
-			//printf("+++here\n");
 			if ((ft_strcmp(args[i], content[j])) == 0)
 			{
 				ft_putstr(args[i]);
@@ -43,10 +42,11 @@ void valid_file(char **content, char **args)
 		}
 		if (found == 0)
 		{
-				pathed_file(args[i]);
+			pathed_file(args[i]);
 		}
 		i++;
 	}
+	//printf("+++here\n");
 }
 
 //method that will be used to display the content
@@ -184,8 +184,7 @@ void ft_ls(char *folder, struct dirent *files, t_flags flags, char **content)
 {
 	DIR *mydir;
 	int tot;
-	//folder = ft_strdup();
-	//printf(">>>>%d\n", num_dir(argc, argv));
+
 	mydir = opendir(folder);
 	if (!mydir)
 		printf("fail to open\n");
@@ -214,7 +213,6 @@ int main(int argc, char **argv)
 		content = save_(".");
 		valid_file(content, sFiles);
 	}
-	//printf(">>>output == %d\n", tot);
 	if (tot == INVALID_FLAG)
 		dirs = save_dirs(argc, argv);
 	if ((num_dir(argc, argv)) == 0 && tot == INVALID_FLAG)

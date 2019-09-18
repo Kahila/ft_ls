@@ -57,40 +57,6 @@ int path_(char *str)
 	return (0);
 }
 
-// //method that will get the path
-// char *split_file(char *dir)
-// {
-// 	int i;
-// 	int j;
-// 	int tot;
-// 	char *new;
-
-// 	tot = j = i = 0;
-// 	while (dir[i])
-// 		i++;
-// 	i--;
-// 	while (dir[i] != '/')
-// 	{
-// 		tot++;
-// 		i--;
-// 	}
-// 	printf(">>>>>>>>>>here tot = %d\n", tot);
-// 	new = (char *)malloc(sizeof(char) * (tot));
-// 	new[tot] = '\0';
-// 	printf("j = %d\n", j);
-// 	i++;
-// 	while (j < tot)
-// 	{
-// 		//printf("here in\n");
-// 		new[j] = dir[i];
-// 		printf("(%c)\n", new[j]);
-// 		i++;
-// 		j++;
-// 		printf("save path\n");
-// 	}
-// 	printf("file == %s\n", new);
-// }
-
 //this method will be used to check for single files passed from other dirs
 void pathed_file(char *dirs)
 {
@@ -103,10 +69,12 @@ void pathed_file(char *dirs)
 		path = split_path(dirs);
 		file = ft_strrchr(dirs, '/');
 		//split_file(dirs);
+		//printf("///////here\n");
 		file++;
 		printf("==== %s\n", file);
 		printf(">>>>>%s\n", path);
-		//content = save_(path);
+		content = save_(path);
+		//printf("///////here end\n");
 	}
 	ft_putstr("ls: ");
 	ft_putstr(dirs);
