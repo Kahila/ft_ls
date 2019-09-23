@@ -13,12 +13,16 @@
 #include "ft_ls.h"
 
 //this method will count the amount of content within the ./
-int count(struct dirent *files, DIR *mydir, char *folder)
+int count_(char *folder)
 {
 	int tot = 0;
+	struct dirent *files;
+	DIR *mydir; 
 
+	mydir = opendir(folder);
 	while ((files = readdir(mydir)) != NULL)
 		tot++;
+	//closedir(mydir);
 	return tot;
 }
 
@@ -50,7 +54,7 @@ char **save_(char *folder)
 
 	mydir2 = opendir(folder);
 	if (mydir2)
-		tot = count(files2, mydir2, folder);
+		tot = count_(folder);
 	else
 		return NULL;
 	content = (char **)malloc(sizeof(char *) * (tot));
@@ -85,7 +89,6 @@ char **get_content(int tot, char *folder, t_flags flags)
 	content[tot] = NULL;
 	closedir(mydir2);
 	content = bubble_sort(content);
-	//get_dir(content);
 	if (flags.t == 1)
 		content = flag_t(content, folder);
 	if (flags.r == 1)

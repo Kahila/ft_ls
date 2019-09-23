@@ -19,7 +19,6 @@ char            *permits(char *file)
     int i;
     char *str;
 
-    
     if ((stat(file, &buff) < 0))
     {
             return (NULL);

@@ -27,7 +27,7 @@
 #include <string.h>    //working with the strerror function
 #include <stdio.h>     //working with the perror function
 #include <errno.h>
-#include <stdio.h> //remember to remove
+#include <stdio.h>      //remember to remove
 #define POTENTIAL_FLAG '-'
 #define HIDDEN_FILES 'a'
 #define FILE_DETAILS 'l'
@@ -57,6 +57,7 @@ typedef struct s_list
 {
     int nLinks;
     int dirORfile;
+    int sLink;
     int nBytes;
     char *last_modified;
     char *user;
@@ -70,29 +71,44 @@ char *get_path(char *folder, char *content);
 int check_flags(int argc, char **argv, t_flags *flags);
 //char **get_dir(t_list *lst, char *folder, t_list *head)
 //char **get_dir(char **str);
+int nBytes(char *content);
+int check_flags(int argc, char **argv, t_flags *flags);
 char *permits(char *file);
+char *split_path(char *dir);
 char **flag_t(char **str, char *);
 char **rev(char **content);
 char *user(char *);
 char *group(char *);
+char **save_files(int argc, char **argv, t_flags flags);
 char **get_content(int tot, char *folder, t_flags flags);
 char *last_mod(char *);
+int path_(char *str);
 char *get_flags(int argc, char **argv);
+void _lFlag(char *content, char *dir);
 char **bubble_sort(char **str);
 char **sort_first(char **str);
 void saveData(int, char **, t_list *, char *full_path);
+void in_path(char *dir, char **content, char *file, t_flags flags);
 void flag_l(t_list *lst, t_list *head);
 void revers_flag(int argc, char **content);
 void no_flags(int argc, char **content);
-void pathed_file(char *dirs);
+void pathed_file(char *dirs, t_flags flags);
+void valid_file(char **content, char **args, t_flags flags);
+void print_content(char **content, t_flags *flags);
 void hidden_flag(int argc, char **content, char *argv);
 int count(struct dirent *files, DIR *mydir, char *folder);
+char **get_dir(char **str, char *path);
+int count_(char *folder);
+int num_dir(int argc, char **argv);
+int num_files(int argc, char **argv);
 void file_info(char **content, char *argv);
 char **save_(char *folder);
 void flag_al(t_list *lst, t_list *head);
 void flag_a(t_list *lst, t_list *head);
 void no_flag(t_list *lst, t_list *head);
+void ft_ls(char *folder, struct dirent *files, t_flags flags, char **content);
 void flag_r(t_list *lst, t_list *head);
+char **save_dirs(int argc, char **argv);
 void walktree(char *fullpath, char **, t_flags flags);
 int get_nLinks(char *content);
 //int count_dir(t_list *lst, t_list *head, char *folder);

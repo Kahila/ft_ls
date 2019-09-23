@@ -19,7 +19,7 @@
 //save and work on -R
 
 //method that will be used to check if the parsed file is a folder or not
-void valid_file(char **content, char **args)
+void valid_file(char **content, char **args, t_flags flags)
 {
 	int i;
 	int j;
@@ -42,7 +42,7 @@ void valid_file(char **content, char **args)
 		}
 		if (found == 0)
 		{
-			pathed_file(args[i]);
+			pathed_file(args[i], flags);
 		}
 		i++;
 	}
@@ -119,7 +119,7 @@ int num_dir(int argc, char **argv)
 }
 
 //method that will be used to save the other files that are not folders
-char **save_files(int argc, char **argv)
+char **save_files(int argc, char **argv, t_flags flags)
 {
 	int tot;
 	char **dir;
@@ -149,6 +149,7 @@ char **save_files(int argc, char **argv)
 
 		j++;
 	}
+	dir = bubble_sort(dir);
 	return (dir);
 }
 
@@ -205,21 +206,18 @@ int main(int argc, char **argv)
 	struct dirent *files;
 
 	tot = check_flags(argc, argv, &flags);
-	printf(">>>%d\n", num_files(argc, argv));
+	//printf(">>>%d\n", num_files(argc, argv));
 	int s = 0;
 	if ((num_files(argc, argv)) > 0)
 	{
-		sFiles = save_files(argc, argv);
+		sFiles = save_files(argc, argv,flags);
 		content = save_(".");
-		valid_file(content, sFiles);
+		valid_file(content, sFiles, flags);
 	}
 	if (tot == INVALID_FLAG)
 		dirs = save_dirs(argc, argv);
 	if ((num_dir(argc, argv)) == 0 && tot == INVALID_FLAG)
-	{
-		ft_putstr("invalid input\n");
 		return (INVALID_FLAG);
-	}
 	else if ((tot = num_dir(argc, argv)) == 0)
 		ft_ls(".", files, flags, content);
 	else

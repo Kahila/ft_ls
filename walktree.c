@@ -12,6 +12,17 @@
 
 #include "ft_ls.h"
 
+//this method will count the amount of content within the ./
+int count(struct dirent *files, DIR *mydir, char *folder)
+{
+	int tot = 0;
+
+	while ((files = readdir(mydir)) != NULL)
+		tot++;
+	//closedir(mydir);
+	return tot;
+}
+
 //method that will be used to get the list of dir in thet curr dir
 char **get_dir(char **str, char *path)
 {
