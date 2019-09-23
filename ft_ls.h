@@ -27,7 +27,6 @@
 #include <string.h>    //working with the strerror function
 #include <stdio.h>     //working with the perror function
 #include <errno.h>
-#include <stdio.h>      //remember to remove
 #define POTENTIAL_FLAG '-'
 #define HIDDEN_FILES 'a'
 #define FILE_DETAILS 'l'

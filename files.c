@@ -29,13 +29,19 @@ int path_(char *str)
 //method that will be used to handle the -l flag on single files
 void	_lFlag(char *content, char *dir)
 {
-	printf("%s\t", permits(dir));
-	printf("%d\t", get_nLinks(content));
-	printf("%s\t", user(content));
-	printf("%s\t", group(dir));
-	printf("%d\t", nBytes(dir));
-	printf("%s\t", last_mod(dir));
-	printf("%s\n", dir);
+	ft_putstr(permits(dir));
+	ft_putchar('\t');
+	ft_putnbr(get_nLinks(content));
+	ft_putchar('\t');
+	ft_putstr(user(dir));
+	ft_putchar('\t');
+	ft_putstr(group(dir));
+	ft_putchar('\t');
+	ft_putnbr(nBytes(dir));
+	ft_putchar('\t');
+	ft_putstr(last_mod(dir));
+	ft_putstr(dir);
+	ft_putchar('\n');
 }
 
 //method that will be used to check if the file is within the passed folder
