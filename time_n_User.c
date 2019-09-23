@@ -65,3 +65,25 @@ char        *group(char *content)
     ID = getgrgid(buff.st_gid);
     return (ID->gr_name);
 }
+
+//method that will be used to display the content
+void print_content(char **content, t_flags *flags)
+{
+	int i;
+
+	i = 0;
+	while (content[i] && flags->l != 1)
+	{
+		if (flags->a == 1 && content[i][0] == '.')
+		{
+			ft_putstr(content[i]);
+			ft_putchar('\n');
+		}
+		else if (content[i][0] != '.')
+		{
+			ft_putstr(content[i]);
+			ft_putchar('\n');
+		}
+		i++;
+	}
+}

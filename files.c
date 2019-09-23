@@ -11,31 +11,6 @@
 /* ************************************************************************** */
 #include "ft_ls.h"
 
-//method that will be used to split the path and the file
-char *split_path(char *dir)
-{
-	int i;
-	int j;
-	int stop;
-	char *path;
-
-	j = i = 0;
-	i = ft_strlen(dir);
-	while (dir[i] != '/')
-		i--;
-	stop = i--;
-	path = (char *)malloc(sizeof(char) * (i + 1));
-	path[i + 1] = '\0';
-	i = 0;
-	while (j != stop)
-	{
-		path[j] = dir[i];
-		i++;
-		j++;
-	}
-	return (path);
-}
-
 //method will check if the passed strings have paths
 int path_(char *str)
 {

@@ -19,7 +19,6 @@ int count(struct dirent *files, DIR *mydir, char *folder)
 
 	while ((files = readdir(mydir)) != NULL)
 		tot++;
-	//closedir(mydir);
 	return tot;
 }
 

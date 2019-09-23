@@ -69,8 +69,6 @@ typedef struct s_list
 } t_list;
 char *get_path(char *folder, char *content);
 int check_flags(int argc, char **argv, t_flags *flags);
-//char **get_dir(t_list *lst, char *folder, t_list *head)
-//char **get_dir(char **str);
 int nBytes(char *content);
 int check_flags(int argc, char **argv, t_flags *flags);
 char *permits(char *file);
@@ -111,10 +109,8 @@ void flag_r(t_list *lst, t_list *head);
 char **save_dirs(int argc, char **argv);
 void walktree(char *fullpath, char **, t_flags flags);
 int get_nLinks(char *content);
-//int count_dir(t_list *lst, t_list *head, char *folder);
 int count_dir(char **str);
 int is_file(int nlinks);
 int valid_flag(int argc, char **argv);
-//int get_nLinks(char *content);
 int tot_leng(char **argv);
 #endif

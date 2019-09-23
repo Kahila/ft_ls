@@ -12,65 +12,6 @@
 #include "ft_ls.h"
 #include <stdio.h> //remember to remove
 
-//---last action ... finding other method to display single files
-//sort functions within other files of max 4 functions each
-//check permition for sticky bits
-//check for leaks and norm
-//save and work on -R
-
-//method that will be used to check if the parsed file is a folder or not
-void valid_file(char **content, char **args, t_flags flags)
-{
-	int i;
-	int j;
-	int found;
-
-	found = i = 0;
-	while (args[i])
-	{
-		j = 0;
-		while (content[j])
-		{
-			//printf(">>>%s\n", content[j]);
-			if ((ft_strcmp(args[i], content[j])) == 0)
-			{
-				ft_putstr(args[i]);
-				ft_putchar('\n');
-				found = 1;
-			}
-			j++;
-		}
-		if (found == 0)
-		{
-			pathed_file(args[i], flags);
-		}
-		i++;
-	}
-	//printf("+++here\n");
-}
-
-//method that will be used to display the content
-void print_content(char **content, t_flags *flags)
-{
-	int i;
-
-	i = 0;
-	while (content[i] && flags->l != 1)
-	{
-		if (flags->a == 1 && content[i][0] == '.')
-		{
-			ft_putstr(content[i]);
-			ft_putchar('\n');
-		}
-		else if (content[i][0] != '.')
-		{
-			ft_putstr(content[i]);
-			ft_putchar('\n');
-		}
-		i++;
-	}
-}
-
 //method that will be used to get files that are not folders
 int num_files(int argc, char **argv)
 {
@@ -151,48 +92,6 @@ char **save_files(int argc, char **argv, t_flags flags)
 	}
 	dir = bubble_sort(dir);
 	return (dir);
-}
-
-//method that will be used to save the dirs passed to programe
-char **save_dirs(int argc, char **argv)
-{
-	int tot;
-	char **dir;
-	DIR *mydir;
-	int i;
-	int j;
-
-	tot = num_dir(argc, argv);
-	dir = (char **)malloc(sizeof(char *) * (tot));
-	dir[tot] = NULL;
-	i = 0;
-	j = 1;
-	while (j <= argc)
-	{
-		mydir = opendir(argv[j]);
-		if (mydir)
-		{
-			dir[i] = argv[j];
-			i++;
-		}
-		j++;
-	}
-	return (dir);
-}
-
-//method that will loop through each folder
-void ft_ls(char *folder, struct dirent *files, t_flags flags, char **content)
-{
-	DIR *mydir;
-	int tot;
-
-	mydir = opendir(folder);
-	if (!mydir)
-		printf("fail to open\n");
-	tot = count(files, mydir, folder);
-	content = get_content(tot, folder, flags);
-	print_content(content, &flags);
-	closedir(mydir);
 }
 
 int main(int argc, char **argv)
