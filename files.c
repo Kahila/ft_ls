@@ -42,6 +42,7 @@ void	_lFlag(char *content, char *dir)
 	ft_putstr(last_mod(dir));
 	ft_putstr(dir);
 	ft_putchar('\n');
+	//free(content);
 }
 
 //method that will be used to check if the file is within the passed folder

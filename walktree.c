@@ -40,7 +40,7 @@ char **get_dir(char **str, char *path)
 
         if (ft_strcmp(str[j], ".") != 0 && get_nLinks(get_path(path, str[j])) != 1 && ft_strcmp(str[j], "..") != 0)
         {
-            dir[i] = ft_strdup(str[j]);
+            dir[i] = str[j];
             i++;
         }
         j++;
@@ -81,7 +81,7 @@ void walktree(char *fullpath, char **dirs, t_flags flags)
     char **content;
     struct dirent *files;
 
-    child = ft_strdup(fullpath);
+    child = fullpath;
     mydir = opendir(child);
     if (!mydir)
         printf("fail to open\n");

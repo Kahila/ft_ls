@@ -94,7 +94,6 @@ void valid_file(char **content, char **args, t_flags flags)
 		j = 0;
 		while (content[j])
 		{
-			//printf(">>>%s\n", content[j]);
 			if ((ft_strcmp(args[i], content[j])) == 0)
 			{
 				ft_putstr(args[i]);

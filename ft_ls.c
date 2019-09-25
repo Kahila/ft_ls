@@ -24,7 +24,6 @@ int num_files(int argc, char **argv)
 	while (argv[i] && argc > 1)
 	{
 		mydir = opendir(argv[i]);
-		//printf("here\n");
 		if (!mydir)
 		{
 			if (argv[i][0] != '-')
@@ -105,7 +104,6 @@ int main(int argc, char **argv)
 	struct dirent *files;
 
 	tot = check_flags(argc, argv, &flags);
-	//printf(">>>%d\n", num_files(argc, argv));
 	int s = 0;
 	if ((num_files(argc, argv)) > 0)
 	{
@@ -130,6 +128,9 @@ int main(int argc, char **argv)
 			i++;
 		}
 	}
+	while(1 == 1)
+	{
 
+	}
 	return (SUCCESS);
 }

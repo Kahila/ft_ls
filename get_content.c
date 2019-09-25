@@ -22,7 +22,6 @@ int count_(char *folder)
 	mydir = opendir(folder);
 	while ((files = readdir(mydir)) != NULL)
 		tot++;
-	//closedir(mydir);
 	return tot;
 }
 
@@ -60,9 +59,7 @@ char **save_(char *folder)
 	content = (char **)malloc(sizeof(char *) * (tot));
 	while ((files2 = readdir(mydir2)) != NULL)
 	{
-		//printf("....here\n");
-		content[j] = ft_strdup(files2->d_name);
-		//printf(".....after\n");
+		content[j] = files2->d_name;
 		j++;
 	}
 	content[tot] = NULL;
@@ -83,7 +80,7 @@ char **get_content(int tot, char *folder, t_flags flags)
 	content = (char **)malloc(sizeof(char *) * (tot));
 	while ((files2 = readdir(mydir2)) != NULL)
 	{
-		content[j] = ft_strdup(files2->d_name);
+		content[j] = files2->d_name;
 		j++;
 	}
 	content[tot] = NULL;

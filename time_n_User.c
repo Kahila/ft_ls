@@ -49,7 +49,7 @@ char        *user(char *content)
     i = stat(content, &buff);
     ID = getpwuid(buff.st_uid);
     if (ID != NULL)
-        return (ft_strdup(ID->pw_name));
+        return (ID->pw_name);
     else
         return (ft_itoa(buff.st_uid));
 }

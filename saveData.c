@@ -64,7 +64,6 @@ void saveData(int i, char **content, t_list *lst, char *folder)
     while (i < numFiles)
     {
         full_path = get_path(folder, content[i]);
-        //printf(">>>%s\n", full_path);
         lst = ft_memalloc(sizeof(t_list));
         lst->fileName = content[i];
         lst->nLinks = get_nLinks(full_path);
