@@ -59,9 +59,10 @@ void saveData(int i, char **content, t_list *lst, char *folder)
         hidden = 0;
     }
     i = 0;
+    int count = 0;
     head.next = (t_list *)&head;
     head.prev = (t_list *)&head;
-    while (i < numFiles)
+    while (i < numFiles && content[i])
     {
         full_path = get_path(folder, content[i]);
         lst = ft_memalloc(sizeof(t_list));
@@ -70,14 +71,15 @@ void saveData(int i, char **content, t_list *lst, char *folder)
         lst->dirORfile = is_file(lst->nLinks);
         lst->nBytes = nBytes(full_path);
         lst->last_modified = last_mod(full_path);
-        lst->user = user(full_path);
-        lst->group = group(full_path);
+        lst->user = ft_strdup(user(full_path));
+        lst->group = ft_strdup(group(full_path));
         lst->next = head.next;
         lst->permits = permits(full_path);
         head.next = lst;
         lst->prev = &head;
         lst->next->prev = lst;
         i++;
+        count++;
     }
     if (hidden == HIDDEN_FILES)
         flag_al(head.prev, &head);

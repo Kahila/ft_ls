@@ -33,6 +33,7 @@
 #define RECURSIVE_LS 'R'
 #define SORT_LAST_MODI 't'
 #define SORT_REV_LEXO 'r'
+#include <unistd.h>     ///remember to remove
 enum statusCodes
 {
     SUCCESS,

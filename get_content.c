@@ -77,13 +77,13 @@ char **get_content(int tot, char *folder, t_flags flags)
 	struct dirent *files2;
 
 	mydir2 = opendir(folder);
-	content = (char **)malloc(sizeof(char *) * (tot));
+	content = (char **)malloc(sizeof(char *) * (tot + 1));
+	content[tot + 1] = NULL;
 	while ((files2 = readdir(mydir2)) != NULL)
 	{
 		content[j] = files2->d_name;
 		j++;
 	}
-	content[tot] = NULL;
 	closedir(mydir2);
 	content = bubble_sort(content);
 	if (flags.t == 1)

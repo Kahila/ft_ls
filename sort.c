@@ -26,9 +26,7 @@ char **rev(char **content)
 	j--;
 	while (j >= 0)
 	{
-		//printf("here j = %d\n", j);
-		str[i] = content[j];
-		//printf("%s\n", str[i]);
+		str[i] = ft_strdup(content[j]);
 		j--;
 		i++;
 	}
@@ -65,6 +63,7 @@ char **sort_first(char **str)
 {
 	int j;
 	int i;
+
 	i = 1;
 	char *tmp = str[0];
 	while (str[i])
@@ -85,6 +84,23 @@ char **sort_first(char **str)
 	return (str);
 }
 
+char *_path(char *folder, char *content)
+{
+    char *fullpath;
+    char *add;
+    DIR *check;
+
+    if (content)
+    {
+        fullpath = ft_strjoin(folder, "/");
+        add = fullpath;
+        fullpath = ft_strjoin(fullpath, content);
+        free(add);
+        return (fullpath);
+    }
+    return NULL;
+}
+
 //this method will sort the files accoring to the last modified
 char **flag_t(char **str, char *folder)
 {
@@ -95,14 +111,13 @@ char **flag_t(char **str, char *folder)
 	struct stat buff2;
 
 	i = 0;
-	str = sort_first(str);
 	while (str[i])
 	{
-		j = 0;
-		stat(get_path(folder, str[i]), &buff1);
+		j = 1;
+		stat(_path(folder, str[i]), &buff1);
 		while (str[j])
 		{
-			stat(get_path(folder, str[j]), &buff2);
+			stat(_path(folder, str[j]), &buff2);
 			if (buff2.st_mtime == buff1.st_mtime)
 			{
 				if (buff2.st_mtimespec.tv_nsec < buff1.st_mtimespec.tv_nsec)

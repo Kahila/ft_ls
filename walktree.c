@@ -55,12 +55,11 @@ char *get_path(char *folder, char *content)
     char *add;
     DIR *check;
 
-    if (folder && content)
+    if (content)
     {
         check = opendir(folder);
         if (!check)
             return NULL;
-
         fullpath = ft_strjoin(folder, "/");
         add = fullpath;
         fullpath = ft_strjoin(fullpath, content);
