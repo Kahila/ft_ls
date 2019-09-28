@@ -26,7 +26,7 @@ char **rev(char **content)
 	j--;
 	while (j >= 0)
 	{
-		str[i] = ft_strdup(content[j]);
+		str[i] = (content[j]);
 		j--;
 		i++;
 	}
