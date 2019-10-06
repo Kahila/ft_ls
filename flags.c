@@ -15,9 +15,8 @@
 //this method will be used to handle the flags
 void flag_l(t_list *lst, t_list *head)
 {
-    int hidden;
-
-    hidden = 1;
+    t_list *tmp;
+    tmp = head;
     while (lst != head)
     {
         if (lst->fileName[0] != '.')
@@ -43,9 +42,8 @@ void flag_l(t_list *lst, t_list *head)
 
 void flag_al(t_list *lst, t_list *head)
 {
-    int hidden;
-
-    hidden = 1;
+    t_list *tmp;
+    tmp = head;
     while (lst != head)
     {
         ft_putstr(lst->permits);

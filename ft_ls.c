@@ -110,17 +110,18 @@ int main(int argc, char **argv)
 		sFiles = save_files(argc, argv,flags);
 		content = save_(".");
 		valid_file(content, sFiles, flags);
+		//free(sFiles);
 	}
 	if (tot == INVALID_FLAG)
 		dirs = save_dirs(argc, argv);
 	if ((num_dir(argc, argv)) == 0 && tot == INVALID_FLAG)
 		return (INVALID_FLAG);
-	else if ((tot = num_dir(argc, argv)) == 0)
+	else if ((num_dir(argc, argv)) == 0)
 		ft_ls(".", files, flags, content);
 	else
 	{
 		i = 0;
-		while (i < tot)
+		while (i < num_dir(argc, argv))
 		{
 			ft_putchar('\n');
 			ft_ls(dirs[i], files, flags, content);

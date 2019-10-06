@@ -21,7 +21,7 @@ char             *last_mod(char *content)
     int i;
     int j;
 
-    lastMode = (char*)malloc(sizeof(char) * 12);
+    lastMode = ft_memalloc(sizeof(char) * 12);
     struct stat buff;
     i = stat(content, &buff);
     month_mod = buff.st_mtime;
@@ -86,4 +86,5 @@ void print_content(char **content, t_flags *flags)
 		}
 		i++;
 	}
+    free(content);
 }

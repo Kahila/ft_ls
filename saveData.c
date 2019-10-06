@@ -43,6 +43,21 @@ int nBytes(char *content)
     return (Bytes);
 }
 
+//method that will be used to free the linked list
+// void _free(t_list **lst, t_list *head)
+// {
+//    while (*lst != head)
+//     {
+//             //free(lst->permits);
+//             //free(lst->user);
+//             //free(lst->group);
+//             //free(lst->nBytes);
+//             //free(lst->last_modified);
+//             //free(lst->fileName);
+//         *lst = *lst->prev;
+//     }
+// }
+
 //working with lists
 //storing all the data about the file within the lst node
 void saveData(int i, char **content, t_list *lst, char *folder)
@@ -51,6 +66,8 @@ void saveData(int i, char **content, t_list *lst, char *folder)
     t_list head;
     int hidden;
     int numFiles;
+    t_list tmp;
+
     if ((numFiles = i - 1000000) >= 0)
         hidden = HIDDEN_FILES;
     else
@@ -59,7 +76,6 @@ void saveData(int i, char **content, t_list *lst, char *folder)
         hidden = 0;
     }
     i = 0;
-    int count = 0;
     head.next = (t_list *)&head;
     head.prev = (t_list *)&head;
     while (i < numFiles && content[i])
@@ -79,10 +95,12 @@ void saveData(int i, char **content, t_list *lst, char *folder)
         lst->prev = &head;
         lst->next->prev = lst;
         i++;
-        count++;
     }
+    tmp = head;
     if (hidden == HIDDEN_FILES)
         flag_al(head.prev, &head);
     else
         flag_l(head.prev, &head);
+    //_free(lst, &tmp);
+    free(lst);
 }

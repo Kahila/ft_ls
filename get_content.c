@@ -22,6 +22,7 @@ int count_(char *folder)
 	mydir = opendir(folder);
 	while ((files = readdir(mydir)) != NULL)
 		tot++;
+	closedir(mydir);
 	return tot;
 }
 
@@ -94,6 +95,5 @@ char **get_content(int tot, char *folder, t_flags flags)
 		saveData(tot, content, lst, folder);
 	if (flags.l == 1 && flags.a == 1)
 		saveData((tot + 1000000), content, lst, folder);
-
 	return (content);
 }

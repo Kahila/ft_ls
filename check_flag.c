@@ -25,7 +25,7 @@ char *split_path(char *dir)
 	while (dir[i] != '/')
 		i--;
 	stop = i--;
-	path = (char *)malloc(sizeof(char) * (i + 1));
+	path = ft_memalloc((sizeof(char) * (i + 1)));
 	path[i + 1] = '\0';
 	i = 0;
 	while (j != stop)

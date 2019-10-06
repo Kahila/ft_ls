@@ -30,6 +30,7 @@ char **rev(char **content)
 		j--;
 		i++;
 	}
+	free(content);
 	return (str);
 }
 
@@ -84,9 +85,11 @@ char **sort_first(char **str)
 	return (str);
 }
 
+//method will be used to get the full path of file
 char *_path(char *folder, char *content)
 {
     char *fullpath;
+	char *here;
     char *add;
     DIR *check;
 
@@ -94,9 +97,12 @@ char *_path(char *folder, char *content)
     {
         fullpath = ft_strjoin(folder, "/");
         add = fullpath;
-        fullpath = ft_strjoin(fullpath, content);
-        free(add);
-        return (fullpath);
+		if (fullpath)
+			free(fullpath);
+		here = add;
+        here = ft_strjoin(add, content);
+		free(add);
+        return (here);
     }
     return NULL;
 }
@@ -111,6 +117,7 @@ char **flag_t(char **str, char *folder)
 	struct stat buff2;
 
 	i = 0;
+	//sort_first(str);//fix this function
 	while (str[i])
 	{
 		j = 1;
